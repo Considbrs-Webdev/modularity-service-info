@@ -25,6 +25,7 @@ class ServiceInformation
     public function registerPostType(): void
     {
         $slug = get_field('slug', 'service-information-settings') ?: apply_filters('Modularity/ServiceInformation/Posts/Slug', 'service-information');
+        $archivePage = get_field('service_information_page', 'service-information-settings');
         
         $labels = [
             'name'                  => __('Service Information', 'modularity-service-info'),
@@ -66,7 +67,7 @@ class ServiceInformation
                 'with_front' => false,
             ],
             'capability_type'    => 'post',
-            'has_archive'        => true,
+            'has_archive'        => empty($archivePage),
             'hierarchical'       => false,
             'menu_position'      => 20,
             'menu_icon'          => 'dashicons-info',

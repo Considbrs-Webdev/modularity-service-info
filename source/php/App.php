@@ -26,28 +26,6 @@ class App
 
         // Register module with Modularity
         add_action('init', [$this, 'registerModule']);
-
-        // Enqueue styles
-        add_action('wp_enqueue_scripts', [$this, 'enqueueStyles']);
-    }
-
-    /**
-     * Enqueue styles
-     * 
-     * @return void
-     */
-    public function enqueueStyles(): void
-    {
-        $styleFile = CacheBust::name('css/modularity-service-info.css');
-
-        if ($styleFile) {
-            wp_enqueue_style(
-                'modularity-service-info',
-                MODULARITYSERVICEINFO_URL . '/assets/dist/' . $styleFile,
-                [],
-                null
-            );
-        }
     }
 
     /**

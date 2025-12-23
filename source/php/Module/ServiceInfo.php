@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace ModularityServiceInfo\Module;
 
+use ModularityServiceInfo\Helper\CacheBust;
+use ModularityServiceInfo\Model\ServiceInfoPost;
+
 /**
  * Class ServiceInfo
  * @package ModularityServiceInfo\Module
@@ -33,6 +36,13 @@ class ServiceInfo extends \Modularity\Module
             $this->getFields(),
         ));
 
+        $data['postsToShow'] = is_null($data['postsToShow']) ? 5 : (int) $data['postsToShow'];
+        $data['showIcons'] = is_null($data['showIcons']) ? true : $data['showIcons'];
+        $data['linkToServiceInformationArchive'] = is_null($data['linkToServiceInformationArchive']) ? true : $data['linkToServiceInformationArchive'];
+        $data['archiveLink'] = $this->getArchiveLink();
+
+        $data['posts'] = $this->getPosts($data['postsToShow']);
+
         return $data;
     }
 
@@ -46,12 +56,134 @@ class ServiceInfo extends \Modularity\Module
     }
 
     /**
-     * Style - Register & adding css
+     * Enqueue styles
      * @return void
      */
     public function style(): void
     {
-        $this->wpEnqueue?->add('css/modularity-service-info.css', [], '1.0.0');
+        $styleFile = CacheBust::name('css/modularity-service-info.css');
+
+        if ($styleFile) {
+            wp_enqueue_style(
+                'modularity-service-info',
+                MODULARITYSERVICEINFO_URL . '/assets/dist/' . $styleFile,
+                [],
+                null
+            );
+        }
+    }
+
+    /**
+     * Enqueue scripts
+     * @return void
+     */
+    public function script(): void
+    {
+        $scriptFile = CacheBust::name('js/modularity-service-info.js');
+
+        if ($scriptFile) {
+            wp_enqueue_script(
+                'modularity-service-info',
+                MODULARITYSERVICEINFO_URL . '/assets/dist/' . $scriptFile,
+                [],
+                null,
+                true
+            );
+        }
+    }
+
+    /**
+     * Get service information posts
+     * 
+     * @param int $postsToShow Number of posts to retrieve
+     * @return array
+     */
+    private function getPosts(int $postsToShow): array
+    {
+        $args = [
+            'post_type'      => 'service_information',
+            'posts_per_page' => $postsToShow,
+            'post_status'    => 'publish',
+            'meta_key'       => 'start_date',
+            'orderby'        => 'meta_value',
+            'order'          => 'DESC',
+        ];
+
+        $query = new \WP_Query($args);
+
+        if (!$query->have_posts()) {
+            return [];
+        }
+
+        $posts = [];
+
+        foreach ($query->posts as $post) {
+            $posts[] = $this->formatPost($post);
+        }
+
+        return $posts;
+    }
+
+    /**
+     * Get the archive link for service information
+     * 
+     * @return string|null
+     */
+    private function getArchiveLink(): ?string
+    {
+        // Get custom archive link from options if available
+        $customLink = get_field('service_information_page', 'service-information-settings');
+        
+        if (!empty($customLink)) {
+            return $customLink;
+        }
+        
+        // Fall back to default archive link
+        return get_post_type_archive_link('service_information');
+    }
+
+    /**
+     * Format a post into a ServiceInfoPost object
+     * 
+     * @param \WP_Post $post The WordPress post object
+     * @return ServiceInfoPost
+     */
+    private function formatPost(\WP_Post $post): ServiceInfoPost
+    {
+        // Get the service_category terms
+        $terms = get_the_terms($post->ID, 'service_category');
+        $iconName = null;
+
+        // Get material_icon from the first term
+        if ($terms && !is_wp_error($terms)) {
+            $firstTerm = reset($terms);
+            $iconGroup = get_field('icon', 'service_category_' . $firstTerm->term_id);
+            $iconName = $iconGroup['material_icon'] ?? null;
+        }
+
+        // Get start and end dates
+        $startDate = get_field('start_date', $post->ID);
+        $endDate = get_field('end_date', $post->ID);
+
+        // Format date string
+        $formattedDate = null;
+        if ($startDate && $endDate) {
+            $formattedDate = $startDate . ' - ' . $endDate;
+        } elseif ($startDate) {
+            $formattedDate = $startDate;
+        } elseif ($endDate) {
+            $formattedDate = $endDate;
+        }
+
+        // Create and return ServiceInfoPost object
+        return new ServiceInfoPost(
+            get_the_title($post->ID),
+            $startDate,
+            $endDate,
+            $formattedDate,
+            $iconName,
+            get_permalink($post->ID)
+        );
     }
 
     /**
@@ -59,7 +191,7 @@ class ServiceInfo extends \Modularity\Module
      * init()            What to do on initialization
      * data()            Use to send data to view (return array)
      * style()           Enqueue style only when module is used on page
-     * script            Enqueue script only when module is used on page
+     * script()          Enqueue script only when module is used on page
      * adminEnqueue()    Enqueue scripts for the module edit/add page in admin
      * template()        Return the view template (blade) the module should use when displayed
      */

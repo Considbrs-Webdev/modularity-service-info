@@ -37,10 +37,14 @@
                 "class": "",
                 "id": ""
             },
-            "post_type": "",
-            "post_status": "",
+            "post_type": [
+                "page"
+            ],
+            "post_status": [
+                "publish"
+            ],
             "taxonomy": "",
-            "allow_archives": 1,
+            "allow_archives": 0,
             "multiple": 0,
             "allow_null": 0,
             "allow_in_bindings": 0

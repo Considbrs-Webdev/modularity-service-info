@@ -40,10 +40,14 @@
                 'class' => '',
                 'id' => '',
             ),
-            'post_type' => '',
-            'post_status' => '',
+            'post_type' => array(
+                0 => 'page',
+            ),
+            'post_status' => array(
+                0 => 'publish',
+            ),
             'taxonomy' => '',
-            'allow_archives' => 1,
+            'allow_archives' => 0,
             'multiple' => 0,
             'allow_null' => 0,
             'allow_in_bindings' => 0,
