@@ -4,6 +4,7 @@ namespace ModularityServiceInfo;
 
 use ModularityServiceInfo\Helper\CacheBust;
 use ModularityServiceInfo\PostType\ServiceInformation;
+use ModularityServiceInfo\Admin\Settings;
 
 /**
  * Class App
@@ -19,6 +20,9 @@ class App
     {
         // Initialize custom post type
         new ServiceInformation();
+
+        // Initialize options page
+        new Settings();
 
         // Register module with Modularity
         add_action('init', [$this, 'registerModule']);

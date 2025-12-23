@@ -1,0 +1,106 @@
+<?php 
+
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
+    'key' => 'group_694a913636a90',
+    'title' => __('Service information', 'modularity-service-info'),
+    'fields' => array(
+        0 => array(
+            'key' => 'field_694a91361e303',
+            'label' => __('Start date', 'modularity-service-info'),
+            'name' => 'start_date',
+            'aria-label' => '',
+            'type' => 'date_time_picker',
+            'instructions' => '',
+            'required' => 1,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'display_format' => 'Y-m-d H:i:s',
+            'return_format' => 'Y-m-d H:i:s',
+            'first_day' => 1,
+            'default_to_current_date' => 0,
+            'allow_in_bindings' => 0,
+        ),
+        1 => array(
+            'key' => 'field_694a916d1e304',
+            'label' => __('End date', 'modularity-service-info'),
+            'name' => 'end_date',
+            'aria-label' => '',
+            'type' => 'date_time_picker',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'display_format' => 'Y-m-d H:i:s',
+            'return_format' => 'Y-m-d H:i:s',
+            'first_day' => 1,
+            'default_to_current_date' => 0,
+            'allow_in_bindings' => 0,
+        ),
+        2 => array(
+            'key' => 'field_694a9208d69a7',
+            'label' => __('Unpublish automatically?', 'modularity-service-info'),
+            'name' => 'unpublish_automatically',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => __('Will automatically unpublish the information when end date has past', 'modularity-service-info'),
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'allow_in_bindings' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'ui' => 1,
+        ),
+    ),
+    'location' => array(
+        0 => array(
+            0 => array(
+                'param' => 'post_type',
+                'operator' => '==',
+                'value' => 'service_information',
+            ),
+        ),
+    ),
+    'menu_order' => 0,
+    'position' => 'side',
+    'style' => 'default',
+    'label_placement' => 'left',
+    'instruction_placement' => 'label',
+    'hide_on_screen' => array(
+        0 => 'discussion',
+        1 => 'comments',
+        2 => 'revisions',
+        3 => 'author',
+        4 => 'format',
+        5 => 'page_attributes',
+        6 => 'featured_image',
+        7 => 'tags',
+        8 => 'send-trackbacks',
+    ),
+    'active' => true,
+    'description' => '',
+    'show_in_rest' => 0,
+    'display_title' => '',
+    'acfe_autosync' => array(
+        0 => 'json',
+    ),
+    'acfe_form' => 0,
+    'acfe_meta' => '',
+    'acfe_note' => '',
+));
+}

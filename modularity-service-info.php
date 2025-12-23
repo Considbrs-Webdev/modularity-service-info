@@ -37,9 +37,10 @@ if (file_exists(MODULARITYSERVICEINFO_PATH . 'vendor/autoload.php')) {
 add_action('acf/init', function () {
     $acfExportManager = new \AcfExportManager\AcfExportManager();
     $acfExportManager->setTextdomain('modularity-service-info');
-    $acfExportManager->setExportFolder(MODULARITYSERVICEINFO_PATH . 'source/php/AcfFields/');
+    $acfExportManager->setExportFolder(MODULARITYSERVICEINFO_PATH . '/source/php/AcfFields/');
     $acfExportManager->autoExport(array(
-        'service-info-module' => 'group_service-info_module',
+        'general-settings' => 'group_694a9d25909d8',
+        'post-data' => 'group_694a913636a90',
     ));
     $acfExportManager->import();
 });

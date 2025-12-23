@@ -15,9 +15,9 @@ class ServiceInfo extends \Modularity\Module
 
     public function init(): void
     {
-        $this->nameSingular = __('ServiceInfo', 'modularity-service-info');
-        $this->namePlural = __('ServiceInfo', 'modularity-service-info');
-        $this->description = __('A service-info module.', 'modularity-service-info');
+        $this->nameSingular = __('Service Information', 'modularity-service-info');
+        $this->namePlural = __('Service Information', 'modularity-service-info');
+        $this->description = __('A service information module.', 'modularity-service-info');
     }
 
     /**

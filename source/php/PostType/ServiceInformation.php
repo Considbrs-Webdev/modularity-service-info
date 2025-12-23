@@ -8,7 +8,7 @@ namespace ModularityServiceInfo\PostType;
  * Registers the Service Information custom post type and its taxonomy.
  * 
  * @package ModularityServiceInfo\PostType
- */
+ */ 
 class ServiceInformation
 {
     public function __construct()
@@ -24,6 +24,8 @@ class ServiceInformation
      */
     public function registerPostType(): void
     {
+        $slug = get_field('slug', 'service-information-settings') ?: apply_filters('Modularity/ServiceInformation/Posts/Slug', 'service-information');
+        
         $labels = [
             'name'                  => __('Service Information', 'modularity-service-info'),
             'singular_name'         => __('Service Information', 'modularity-service-info'),
@@ -59,7 +61,10 @@ class ServiceInformation
             'show_ui'            => true,
             'show_in_menu'       => true,
             'query_var'          => true,
-            'rewrite'            => ['slug' => 'service-information'],
+            'rewrite'            => [
+                'slug' => $slug,
+                'with_front' => false,
+            ],
             'capability_type'    => 'post',
             'has_archive'        => true,
             'hierarchical'       => false,
