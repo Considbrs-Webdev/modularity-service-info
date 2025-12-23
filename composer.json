@@ -1,0 +1,22 @@
+{
+    "name": "considbrs-webdev/modularity-service-info",
+    "description": "Modularity Service Information Module",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Considbrs-Webdev",
+            "email": "webdev@considbrs.se"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "suggest": {
+        "helsingborg-stad/municipio": "^6.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ModularityServiceInfo\\": "source/php/"
+        }
+    }
+}

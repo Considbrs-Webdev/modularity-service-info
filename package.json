@@ -1,0 +1,34 @@
+{
+    "name": "@considbrs-webdev/modularity-service-info",
+    "version": "1.0.0",
+    "description": "Modularity Service Information Module",
+    "main": "",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/considbrs-webdev/modularity-service-info"
+    },
+    "author": "Consid Borås AB",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/considbrs-webdev/modularity-service-info/issues"
+    },
+    "homepage": "https://github.com/considbrs-webdev/modularity-service-info",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "build:dev": "vite build --mode development",
+        "watch": "vite build --watch --mode development"
+    },
+    "browserslist": [
+        "> 1%",
+        "not dead"
+    ],
+    "devDependencies": {
+        "vite": "^7.1.2",
+        "vite-config-factory": "^1.0.1",
+        "sass-embedded": "^1.93.3"
+    },
+    "browser": {
+        "child_process": false
+    }
+}

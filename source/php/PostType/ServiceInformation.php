@@ -1,0 +1,120 @@
+<?php
+
+namespace ModularityServiceInfo\PostType;
+
+/**
+ * Class ServiceInformation
+ * 
+ * Registers the Service Information custom post type and its taxonomy.
+ * 
+ * @package ModularityServiceInfo\PostType
+ */
+class ServiceInformation
+{
+    public function __construct()
+    {
+        add_action('init', [$this, 'registerPostType']);
+        add_action('init', [$this, 'registerTaxonomy']);
+    }
+
+    /**
+     * Register the Service Information custom post type
+     * 
+     * @return void
+     */
+    public function registerPostType(): void
+    {
+        $labels = [
+            'name'                  => __('Service Information', 'modularity-service-info'),
+            'singular_name'         => __('Service Information', 'modularity-service-info'),
+            'menu_name'             => __('Service Information', 'modularity-service-info'),
+            'name_admin_bar'        => __('Service Information', 'modularity-service-info'),
+            'add_new'               => __('Add New', 'modularity-service-info'),
+            'add_new_item'          => __('Add New Service Information', 'modularity-service-info'),
+            'new_item'              => __('New Service Information', 'modularity-service-info'),
+            'edit_item'             => __('Edit Service Information', 'modularity-service-info'),
+            'view_item'             => __('View Service Information', 'modularity-service-info'),
+            'all_items'             => __('All Service Information', 'modularity-service-info'),
+            'search_items'          => __('Search Service Information', 'modularity-service-info'),
+            'parent_item_colon'     => __('Parent Service Information:', 'modularity-service-info'),
+            'not_found'             => __('No service information found.', 'modularity-service-info'),
+            'not_found_in_trash'    => __('No service information found in Trash.', 'modularity-service-info'),
+            'featured_image'        => __('Featured Image', 'modularity-service-info'),
+            'set_featured_image'    => __('Set featured image', 'modularity-service-info'),
+            'remove_featured_image' => __('Remove featured image', 'modularity-service-info'),
+            'use_featured_image'    => __('Use as featured image', 'modularity-service-info'),
+            'archives'              => __('Service Information Archives', 'modularity-service-info'),
+            'insert_into_item'      => __('Insert into service information', 'modularity-service-info'),
+            'uploaded_to_this_item' => __('Uploaded to this service information', 'modularity-service-info'),
+            'filter_items_list'     => __('Filter service information list', 'modularity-service-info'),
+            'items_list_navigation' => __('Service information list navigation', 'modularity-service-info'),
+            'items_list'            => __('Service information list', 'modularity-service-info'),
+        ];
+
+        $args = [
+            'labels'             => $labels,
+            'description'        => __('Service information for the site', 'modularity-service-info'),
+            'public'             => true,
+            'publicly_queryable' => true,
+            'show_ui'            => true,
+            'show_in_menu'       => true,
+            'query_var'          => true,
+            'rewrite'            => ['slug' => 'service-information'],
+            'capability_type'    => 'post',
+            'has_archive'        => true,
+            'hierarchical'       => false,
+            'menu_position'      => 20,
+            'menu_icon'          => 'dashicons-info',
+            'supports'           => ['title', 'editor', 'thumbnail', 'excerpt', 'revisions'],
+            'show_in_rest'       => true,
+        ];
+
+        register_post_type('service_information', $args);
+    }
+
+    /**
+     * Register the Service Information Category taxonomy
+     * 
+     * @return void
+     */
+    public function registerTaxonomy(): void
+    {
+        $labels = [
+            'name'                       => __('Service Categories', 'modularity-service-info'),
+            'singular_name'              => __('Service Category', 'modularity-service-info'),
+            'menu_name'                  => __('Service Categories', 'modularity-service-info'),
+            'all_items'                  => __('All Service Categories', 'modularity-service-info'),
+            'parent_item'                => __('Parent Service Category', 'modularity-service-info'),
+            'parent_item_colon'          => __('Parent Service Category:', 'modularity-service-info'),
+            'new_item_name'              => __('New Service Category Name', 'modularity-service-info'),
+            'add_new_item'               => __('Add New Service Category', 'modularity-service-info'),
+            'edit_item'                  => __('Edit Service Category', 'modularity-service-info'),
+            'update_item'                => __('Update Service Category', 'modularity-service-info'),
+            'view_item'                  => __('View Service Category', 'modularity-service-info'),
+            'separate_items_with_commas' => __('Separate service categories with commas', 'modularity-service-info'),
+            'add_or_remove_items'        => __('Add or remove service categories', 'modularity-service-info'),
+            'choose_from_most_used'      => __('Choose from the most used', 'modularity-service-info'),
+            'popular_items'              => __('Popular Service Categories', 'modularity-service-info'),
+            'search_items'               => __('Search Service Categories', 'modularity-service-info'),
+            'not_found'                  => __('Not Found', 'modularity-service-info'),
+            'no_terms'                   => __('No service categories', 'modularity-service-info'),
+            'items_list'                 => __('Service categories list', 'modularity-service-info'),
+            'items_list_navigation'      => __('Service categories list navigation', 'modularity-service-info'),
+        ];
+
+        $args = [
+            'labels'            => $labels,
+            'description'       => __('Categories for service information', 'modularity-service-info'),
+            'hierarchical'      => true,
+            'public'            => true,
+            'show_ui'           => true,
+            'show_admin_column' => true,
+            'show_in_nav_menus' => true,
+            'show_tagcloud'     => true,
+            'show_in_rest'      => true,
+            'rewrite'           => ['slug' => 'service-category'],
+        ];
+
+        register_taxonomy('service_category', ['service_information'], $args);
+    }
+}
