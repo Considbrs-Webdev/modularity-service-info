@@ -1,20 +1,46 @@
 .mod-service-info {
+  --transition-style: background-color 0.2s ease;
+  --list-gap: var(--base, 1rem);
+  --item-background-color: var(--color-background-card, #f5f5f5);
+  --item-border-radius: var(--radius-sm, 5px);
+  --item-padding: var(--base, 1rem);
+  --icon-container-size: 4rem;
+  --icon--size: 2rem;
+  --icon-background-color: var(--color-background, #fff);
+  --icon-border-radius: var(--radius-sm, 5px);
+  --date-font-size: 0.875rem;
+  --date-color: #666;
+  --archive-link-gap: calc(var(--base, 1em) * 2);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--archive-link-gap);
+
   &__list {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--list-gap);
   }
 
   &__item {
-    background-color: #f5f5f5;
-    border-radius: 0.5rem;
-    transition: background-color 0.2s ease;
+    background-color: var(--item-background-color);
+    border-radius: var(--item-border-radius);
+    padding: var(--item-padding);
+    transition: var(--transition-style);
 
     &:hover {
-      background-color: #ebebeb;
+      background-color: color-mix(
+        in srgb,
+        var(--item-background-color),
+        10% black
+      );
+    }
+
+    & + & {
+      margin-top: 0;
     }
   }
 
@@ -22,21 +48,20 @@
     display: flex;
     align-items: flex-start;
     gap: 1rem;
-    padding: 1.5rem;
     text-decoration: none;
     color: inherit;
   }
 
   &__icon {
     flex-shrink: 0;
-    width: 4rem;
-    height: 4rem;
-    background-color: #fff;
-    border-radius: 50%;
+    width: var(--icon-container-size);
+    height: var(--icon-container-size);
+    background-color: var(--icon-background-color);
+    border-radius: var(--icon-border-radius);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
+    font-size: var(--icon--size);
   }
 
   &__content {
@@ -45,18 +70,13 @@
   }
 
   &__dates {
-    font-size: 0.875rem;
-    color: #666;
+    font-size: var(--date-font-size);
+    color: var(--date-color);
     margin-bottom: 0.5rem;
   }
 
   &__title {
     margin: 0;
     font-weight: 600;
-  }
-
-  &__archive-link {
-    margin-top: 2rem;
-    text-align: center;
   }
 }

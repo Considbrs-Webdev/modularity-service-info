@@ -24,13 +24,12 @@
                         <div class="mod-service-info__content">
                             @if ($post->formattedDate)
                                 <div class="mod-service-info__dates">
-                                    {{ $post->formattedDate }}
+                                    {!! $post->formattedDate !!}
                                 </div>
                             @endif
 
                             @typography([
-                                'element' => 'h3',
-                                'variant' => 'h4',
+                                'element' => 'span',
                                 'classList' => ['mod-service-info__title']
                             ])
                                 {{ $post->title }}
@@ -48,6 +47,7 @@
                 'text' => __('View all service information', 'modularity-service-info'),
                 'href' => $archiveLink,
                 'color' => 'primary',
+                'icon' => $archiveLinkIcon,
             ])
             @endbutton
         </div>
