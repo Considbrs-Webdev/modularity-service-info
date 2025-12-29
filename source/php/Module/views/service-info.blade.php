@@ -66,7 +66,7 @@
     @if ($linkToServiceInformationArchive && !$archiveMode)
         <div class="mod-service-info__archive-link">
             @button([
-                'text' => __('View all service information', 'modularity-service-info'),
+                'text' => $translations['archiveLinkText'],
                 'href' => $archiveLink,
                 'color' => 'primary',
                 'icon' => $archiveLinkIcon,

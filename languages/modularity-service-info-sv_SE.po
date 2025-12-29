@@ -3,9 +3,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity Service Information 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/modularity-service-info\n"
-"POT-Creation-Date: 2025-12-29T12:26:14+00:00\n"
-"PO-Revision-Date: 2025-12-29 13:30+0100\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/modularity-"
+"service-info\n"
+"POT-Creation-Date: 2025-12-29T13:40:14+00:00\n"
+"PO-Revision-Date: 2025-12-29 14:41+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -40,7 +41,8 @@ msgstr "Consid Borås AB"
 msgid "https://github.com/considbrs-webdev"
 msgstr "https://github.com/considbrs-webdev"
 
-#: source/php/AcfFields/php/general-settings.php:8 source/php/Admin/Settings.php:28
+#: source/php/AcfFields/php/general-settings.php:8
+#: source/php/Admin/Settings.php:28
 msgid "Service Information Settings"
 msgstr "Inställningar för driftinformation"
 
@@ -49,8 +51,12 @@ msgid "Slug"
 msgstr "Slug"
 
 #: source/php/AcfFields/php/general-settings.php:16
-msgid "The slug you want for the singular posts, defaults to service-information. Don't forget to flush your permalink rules after changing."
-msgstr "Sluggen du vill ha för de enskilda inläggen, standard är service-information. Glöm inte att spara om dina permalänkar efter ändring."
+msgid ""
+"The slug you want for the singular posts, defaults to service-information. "
+"Don't forget to flush your permalink rules after changing."
+msgstr ""
+"Sluggen du vill ha för de enskilda inläggen, standard är service-"
+"information. Glöm inte att spara om dina permalänkar efter ändring."
 
 #: source/php/AcfFields/php/general-settings.php:27
 msgid "service-information"
@@ -82,7 +88,8 @@ msgstr "Avpublicera automatiskt?"
 
 #: source/php/AcfFields/php/post-data.php:56
 msgid "Will automatically unpublish the information when end date has past"
-msgstr "Kommer automatiskt att avpublicera informationen när slutdatumet har passerat"
+msgstr ""
+"Kommer automatiskt att avpublicera informationen när slutdatumet har passerat"
 
 #: source/php/AcfFields/php/post-data.php:80
 msgid "On unpublish"
@@ -96,8 +103,11 @@ msgstr "Sätt inlägg till utkast"
 msgid "Delete post"
 msgstr "Ta bort inlägg"
 
-#: source/php/Admin/Settings.php:29 source/php/Module/ServiceInfo.php:21 source/php/Module/ServiceInfo.php:22
-#: source/php/PostType/ServiceInformation.php:31 source/php/PostType/ServiceInformation.php:32 source/php/PostType/ServiceInformation.php:33
+#: source/php/Admin/Settings.php:29 source/php/Module/ServiceInfo.php:21
+#: source/php/Module/ServiceInfo.php:22
+#: source/php/PostType/ServiceInformation.php:31
+#: source/php/PostType/ServiceInformation.php:32
+#: source/php/PostType/ServiceInformation.php:33
 #: source/php/PostType/ServiceInformation.php:34
 msgid "Service Information"
 msgstr "Driftinformation"
@@ -110,7 +120,11 @@ msgstr "En modul för driftinformation."
 msgid "No service information available at the moment."
 msgstr "Ingen driftinformation tillgänglig för tillfället."
 
-#: source/php/Module/ServiceInfo.php:299
+#: source/php/Module/ServiceInfo.php:59
+msgid "View all service information"
+msgstr "Visa all driftinformation"
+
+#: source/php/Module/ServiceInfo.php:300
 msgid "Uncategorized"
 msgstr "Okategoriserad"
 
@@ -198,7 +212,8 @@ msgstr "Lista över driftinformation"
 msgid "Service information for the site"
 msgstr "Driftinformation för webbplatsen"
 
-#: source/php/PostType/ServiceInformation.php:89 source/php/PostType/ServiceInformation.php:91
+#: source/php/PostType/ServiceInformation.php:89
+#: source/php/PostType/ServiceInformation.php:91
 msgid "Service Categories"
 msgstr "Driftkategorier"
 
