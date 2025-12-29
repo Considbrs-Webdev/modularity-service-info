@@ -41,7 +41,7 @@
         </ul>
     @endif
 
-    @if ($linkToServiceInformationArchive)
+    @if ($linkToServiceInformationArchive && !$archiveMode)
         <div class="mod-service-info__archive-link">
             @button([
                 'text' => __('View all service information', 'modularity-service-info'),

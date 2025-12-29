@@ -66,6 +66,45 @@
             'ui_off_text' => '',
             'ui' => 1,
         ),
+        3 => array(
+            'key' => 'field_69525808c1970',
+            'label' => __('On unpublish', 'modularity-service-info'),
+            'name' => 'on_unpublish',
+            'aria-label' => '',
+            'type' => 'select',
+            'instructions' => '',
+            'required' => 1,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_694a9208d69a7',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'choices' => array(
+                'draft' => __('Set post to draft', 'modularity-service-info'),
+                'trash' => __('Delete post', 'modularity-service-info'),
+            ),
+            'default_value' => 'draft',
+            'return_format' => 'value',
+            'multiple' => 0,
+            'allow_null' => 0,
+            'allow_in_bindings' => 0,
+            'ui' => 0,
+            'ajax' => 0,
+            'placeholder' => '',
+            'create_options' => 0,
+            'save_options' => 0,
+            'allow_custom' => 0,
+            'search_placeholder' => '',
+        ),
     ),
     'location' => array(
         0 => array(

@@ -41,8 +41,16 @@ class ServiceInfo extends \Modularity\Module
         $data['linkToServiceInformationArchive'] = is_null($data['linkToServiceInformationArchive']) ? true : $data['linkToServiceInformationArchive'];
         $data['archiveLink'] = $this->getArchiveLink();
         $data['archiveLinkIcon'] = apply_filters('Modularity/ServiceInformation/Module/ArchiveLink/Icon', 'arrow-right');
+        $data['archiveMode'] = is_null($data['archiveMode']) ? false : $data['archiveMode'];
+        $data['groupByCategories'] = is_null($data['groupByCategories']) ? false : $data['groupByCategories'];
+        $data['showEmptyCategories'] = is_null($data['showEmptyCategories']) ? false : $data['showEmptyCategories'];
 
         $data['posts'] = $this->getPosts($data['postsToShow']);
+
+        $data['translations'] = [
+            'noPostsForCategory' => __('No service information available at the moment.', 'modularity-service-info'),
+        ];
+
 
         return $data;
     }
