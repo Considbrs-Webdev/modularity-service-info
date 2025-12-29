@@ -45,7 +45,14 @@ class ServiceInfo extends \Modularity\Module
         $data['groupByCategories'] = is_null($data['groupByCategories']) ? false : $data['groupByCategories'];
         $data['showEmptyCategories'] = is_null($data['showEmptyCategories']) ? false : $data['showEmptyCategories'];
 
-        $data['posts'] = $this->getPosts($data['postsToShow']);
+        $postsToShow = $data['archiveMode'] ? -1 : $data['postsToShow'];
+        $posts = $this->getPosts($postsToShow);
+
+        if ($data['groupByCategories']) {
+            $data['posts'] = $this->groupPosts($posts, $data['showEmptyCategories']);
+        } else {
+            $data['posts'] = $posts;
+        }
 
         $data['translations'] = [
             'noPostsForCategory' => __('No service information available at the moment.', 'modularity-service-info'),
@@ -250,7 +257,8 @@ class ServiceInfo extends \Modularity\Module
             get_the_title($post->ID),
             $formattedDate,
             $iconName,
-            get_permalink($post->ID)
+            get_permalink($post->ID),
+            ($terms && !is_wp_error($terms)) ? $terms : []
         );
     }
 
@@ -263,5 +271,47 @@ class ServiceInfo extends \Modularity\Module
      * adminEnqueue()    Enqueue scripts for the module edit/add page in admin
      * template()        Return the view template (blade) the module should use when displayed
      */
+
+    /**
+     * Group posts by category
+     * 
+     * @param array $posts
+     * @param bool $showEmptyCategories
+     * @return array
+     */
+    private function groupPosts(array $posts, bool $showEmptyCategories): array
+    {
+        $grouped = [];
+
+        $terms = get_terms([
+            'taxonomy' => 'service_category',
+            'hide_empty' => false,
+        ]);
+
+        if (!empty($terms) && !is_wp_error($terms)) {
+            foreach ($terms as $term) {
+                $grouped[$term->name] = [];
+            }
+        }
+
+        foreach ($posts as $post) {
+            if (empty($post->terms)) {
+                $grouped[__('Uncategorized', 'modularity-service-info')][] = $post;
+                continue;
+            }
+
+            foreach ($post->terms as $term) {
+                $grouped[$term->name][] = $post;
+            }
+        }
+
+        if (!$showEmptyCategories) {
+            $grouped = array_filter($grouped, function ($posts) {
+                return !empty($posts);
+            });
+        }
+
+        return $grouped;
+    }
 }
 

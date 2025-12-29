@@ -17,16 +17,19 @@ class ServiceInfoPost
     public ?string $formattedDate;
     public ?string $iconName;
     public string $link;
+    public array $terms;
 
     public function __construct(
         string $title,
         ?string $formattedDate,
         ?string $iconName,
-        string $link
+        string $link,
+        array $terms = []
     ) {
         $this->title = $title;
         $this->formattedDate = $formattedDate;
         $this->iconName = $iconName;
         $this->link = $link;
+        $this->terms = $terms;
     }
 }
