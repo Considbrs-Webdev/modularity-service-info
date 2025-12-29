@@ -242,8 +242,7 @@ class ServiceInfo extends \Modularity\Module
         // Get material_icon from the first term
         if ($terms && !is_wp_error($terms)) {
             $firstTerm = reset($terms);
-            $iconGroup = get_field('icon', 'service_category_' . $firstTerm->term_id);
-            $iconName = $iconGroup['material_icon'] ?? null;
+            $iconName = get_field('icon', 'service_category_' . $firstTerm->term_id);
         }
 
         // Get start and end raw values

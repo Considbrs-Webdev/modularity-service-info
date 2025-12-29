@@ -15,10 +15,8 @@ use ModularityServiceInfo\Cron\UnpublishExpiredPosts;
  * 
  * @package ModularityServiceInfo
  */
-class App
-{
-    public function __construct()
-    {
+class App {
+    public function __construct() {
         // Initialize custom post type
         new ServiceInformation();
 
@@ -30,6 +28,8 @@ class App
 
         // Register module with Modularity
         add_action('init', [$this, 'registerModule']);
+
+        add_filter('acf/load_field_group', [$this, 'removeAdvancedTermSettings']);
     }
 
     /**
@@ -37,13 +37,33 @@ class App
      * 
      * @return void
      */
-    public function registerModule(): void
-    {
+    public function registerModule(): void {
         if (function_exists('modularity_register_module')) {
             modularity_register_module(
                 MODULARITYSERVICEINFO_MODULE_PATH,
                 'ServiceInfo',
             );
         }
+    }
+
+    public function removeAdvancedTermSettings($field_group) {
+        // Target this specific field group
+        if ($field_group['key'] !== 'group_63e6002cc129c') {
+            return $field_group;
+        }
+
+        // Only on taxonomy edit screens
+        if (!is_admin() || empty($_GET['taxonomy'])) {
+            return $field_group;
+        }
+
+        $taxonomy = sanitize_text_field($_GET['taxonomy']);
+
+        // Disable for specific taxonomy
+        if ($taxonomy === 'service_category') {
+            return false; // ← removes the field group completely
+        }
+
+        return $field_group;
     }
 }

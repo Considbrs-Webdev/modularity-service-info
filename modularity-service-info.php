@@ -39,8 +39,10 @@ add_action('acf/init', function () {
     $acfExportManager->setTextdomain('modularity-service-info');
     $acfExportManager->setExportFolder(MODULARITYSERVICEINFO_PATH . '/source/php/AcfFields/');
     $acfExportManager->autoExport(array(
-        'general-settings' => 'group_694a9d25909d8',
-        'post-data' => 'group_694a913636a90',
+        'general-settings'  => 'group_694a9d25909d8',
+        'module-settings'   => 'group_694aa3a8a7d33',
+        'taxonomy-settings' => 'group_695288c6283da',
+        'post-data'         => 'group_694a913636a90',
     ));
     $acfExportManager->import();
 });

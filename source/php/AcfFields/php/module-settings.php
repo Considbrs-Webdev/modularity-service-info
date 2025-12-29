@@ -1,0 +1,202 @@
+<?php 
+
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
+    'key' => 'group_694aa3a8a7d33',
+    'title' => __('Service Information Module', 'modularity-service-info'),
+    'fields' => array(
+        0 => array(
+            'key' => 'field_6952560889e30',
+            'label' => __('Archive mode', 'modularity-service-info'),
+            'name' => 'archive_mode',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => __('Will fetch and display all published posts', 'modularity-service-info'),
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'allow_in_bindings' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'ui' => 1,
+        ),
+        1 => array(
+            'key' => 'field_694aa3a885905',
+            'label' => __('Posts to show', 'modularity-service-info'),
+            'name' => 'posts_to_show',
+            'aria-label' => '',
+            'type' => 'number',
+            'instructions' => '',
+            'required' => 1,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_6952560889e30',
+                        'operator' => '!=',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'default_value' => '',
+            'min' => 1,
+            'max' => 10,
+            'allow_in_bindings' => 0,
+            'placeholder' => '',
+            'step' => '',
+            'prepend' => '',
+            'append' => '',
+        ),
+        2 => array(
+            'key' => 'field_694aa44585906',
+            'label' => __('Show icons?', 'modularity-service-info'),
+            'name' => 'show_icons',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 1,
+            'allow_in_bindings' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'ui' => 1,
+        ),
+        3 => array(
+            'key' => 'field_694aa46785907',
+            'label' => __('Link to service information archive?', 'modularity-service-info'),
+            'name' => 'link_to_service_information_archive',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_6952560889e30',
+                        'operator' => '!=',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 1,
+            'allow_in_bindings' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'ui' => 1,
+        ),
+        4 => array(
+            'key' => 'field_6952563d89e31',
+            'label' => __('Group by categories', 'modularity-service-info'),
+            'name' => 'group_by_categories',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => __('Will group service information according to their categories', 'modularity-service-info'),
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_6952560889e30',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'allow_in_bindings' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'ui' => 1,
+        ),
+        5 => array(
+            'key' => 'field_6952568089e32',
+            'label' => __('Show empty categories', 'modularity-service-info'),
+            'name' => 'show_empty_categories',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => __('Shows category heading even if it doesn\'t contain any published information at the moment', 'modularity-service-info'),
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_6952563d89e31',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'allow_in_bindings' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'ui' => 1,
+        ),
+    ),
+    'location' => array(
+        0 => array(
+            0 => array(
+                'param' => 'post_type',
+                'operator' => '==',
+                'value' => 'mod-service-info',
+            ),
+        ),
+        1 => array(
+            0 => array(
+                'param' => 'block',
+                'operator' => '==',
+                'value' => 'acf/service-info',
+            ),
+        ),
+    ),
+    'menu_order' => 0,
+    'position' => 'normal',
+    'style' => 'default',
+    'label_placement' => 'left',
+    'instruction_placement' => 'label',
+    'hide_on_screen' => '',
+    'active' => true,
+    'description' => '',
+    'show_in_rest' => 0,
+    'display_title' => '',
+    'acfe_autosync' => array(
+        0 => 'json',
+    ),
+    'acfe_form' => 0,
+    'acfe_meta' => '',
+    'acfe_note' => '',
+));
+}
