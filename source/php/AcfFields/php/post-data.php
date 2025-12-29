@@ -53,7 +53,14 @@
             'type' => 'true_false',
             'instructions' => __('Will automatically unpublish the information when end date has past', 'modularity-service-info'),
             'required' => 0,
-            'conditional_logic' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_694a916d1e304',
+                        'operator' => '!=empty',
+                    ),
+                ),
+            ),
             'wrapper' => array(
                 'width' => '',
                 'class' => '',

@@ -5,6 +5,7 @@ namespace ModularityServiceInfo;
 use ModularityServiceInfo\Helper\CacheBust;
 use ModularityServiceInfo\PostType\ServiceInformation;
 use ModularityServiceInfo\Admin\Settings;
+use ModularityServiceInfo\Cron\UnpublishExpiredPosts;
 
 /**
  * Class App
@@ -23,6 +24,9 @@ class App
 
         // Initialize options page
         new Settings();
+
+        // Initialize cron
+        new UnpublishExpiredPosts();
 
         // Register module with Modularity
         add_action('init', [$this, 'registerModule']);

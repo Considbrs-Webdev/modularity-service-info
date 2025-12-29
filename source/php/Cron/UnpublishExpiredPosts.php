@@ -1,0 +1,106 @@
+<?php
+
+namespace ModularityServiceInfo\Cron;
+
+class UnpublishExpiredPosts
+{
+    public function __construct()
+    {
+        add_action('init', array($this, 'registerCommand'));
+        add_action('modularity_service_info_unpublish_expired', array($this, 'handleCron'));
+        
+        // Schedule the event if not already scheduled
+        if (!wp_next_scheduled('modularity_service_info_unpublish_expired')) {
+            wp_schedule_event(time(), 'hourly', 'modularity_service_info_unpublish_expired');
+        }
+    }
+
+    public function registerCommand()
+    {
+        if (defined('WP_CLI') && \WP_CLI) {
+            \WP_CLI::add_command('service-info unpublish', array($this, 'unpublishCommand'));
+        }
+    }
+
+    public function handleCron()
+    {
+        $this->unpublishExpiredPosts(false, 100);
+    }
+
+    public function unpublishCommand($args, $assoc_args)
+    {
+        $dryRun = isset($assoc_args['dry-run']);
+        $limit = isset($assoc_args['limit']) ? (int)$assoc_args['limit'] : 100;
+
+        $this->unpublishExpiredPosts($dryRun, $limit);
+    }
+
+    public function unpublishExpiredPosts($dryRun = false, $limit = 100)
+    {
+        $args = array(
+            'post_type'      => 'service_information',
+            'post_status'    => 'publish',
+            'posts_per_page' => $limit,
+            'meta_query'     => array(
+                'relation' => 'AND',
+                array(
+                    'key'     => 'unpublish_automatically',
+                    'value'   => '1',
+                    'compare' => '='
+                ),
+                array(
+                    'key'     => 'end_date',
+                    'value'   => current_time('Y-m-d H:i:s'),
+                    'compare' => '<=',
+                    'type'    => 'DATETIME'
+                ),
+                array(
+                    'key'     => 'end_date',
+                    'value'   => '',
+                    'compare' => '!='
+                )
+            )
+        );
+
+        $query = new \WP_Query($args);
+
+        if ($query->have_posts()) {
+            while ($query->have_posts()) {
+                $query->the_post();
+                $postId = get_the_ID();
+                $action = get_field('on_unpublish', $postId) ?: 'draft';
+                
+                // Sanitize action
+                if (!in_array($action, ['draft', 'trash'])) {
+                    $action = 'draft';
+                }
+
+                if ($dryRun) {
+                    if (defined('WP_CLI') && \WP_CLI) {
+                        \WP_CLI::log(sprintf('Would move post "%s" (ID: %d) to %s', get_the_title(), $postId, $action));
+                    }
+                } else {
+                    $updated = wp_update_post(array(
+                        'ID'          => $postId,
+                        'post_status' => $action
+                    ));
+
+                    if (is_wp_error($updated)) {
+                        if (defined('WP_CLI') && \WP_CLI) {
+                            \WP_CLI::warning(sprintf('Failed to move post "%s" (ID: %d) to %s', get_the_title(), $postId, $action));
+                        }
+                    } else {
+                        if (defined('WP_CLI') && \WP_CLI) {
+                            \WP_CLI::success(sprintf('Moved post "%s" (ID: %d) to %s', get_the_title(), $postId, $action));
+                        }
+                    }
+                }
+            }
+            wp_reset_postdata();
+        } else {
+            if ($dryRun && defined('WP_CLI') && \WP_CLI) {
+                \WP_CLI::log('No expired posts found.');
+            }
+        }
+    }
+}

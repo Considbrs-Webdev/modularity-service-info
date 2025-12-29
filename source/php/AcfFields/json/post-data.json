@@ -50,7 +50,14 @@
             "type": "true_false",
             "instructions": "Will automatically unpublish the information when end date has past",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_694a916d1e304",
+                        "operator": "!=empty"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
