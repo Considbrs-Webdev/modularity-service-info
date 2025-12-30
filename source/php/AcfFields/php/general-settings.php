@@ -52,6 +52,27 @@
             'allow_null' => 0,
             'allow_in_bindings' => 0,
         ),
+        2 => array(
+            'key' => 'field_6953e2f70b4e1',
+            'label' => __('LiteSpeed ESI cache support', 'modularity-service-info'),
+            'name' => 'litespeed_esi_cache_support',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => __('Try to add support for updating the badge even though the page is cached with LiteSpeed. This will use LiteSpeed ESI to properly update only the badge part of the page.', 'modularity-service-info'),
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'allow_in_bindings' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'ui' => 1,
+        ),
     ),
     'location' => array(
         0 => array(

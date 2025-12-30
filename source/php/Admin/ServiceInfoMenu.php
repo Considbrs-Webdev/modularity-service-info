@@ -2,6 +2,8 @@
 
 namespace ModularityServiceInfo\Admin;
 
+use ModularityServiceInfo\Helper\LiteSpeed;
+
 /**
  * Class ServiceInfoMenu
  * 
@@ -23,6 +25,8 @@ class ServiceInfoMenu
     {
         $this->registerAdminHooks();
         $this->registerFrontendHooks();
+        // Register REST route for ESI badge fragments
+        add_action('rest_api_init', [$this, 'registerEsiRestRoute']);
     }
 
     /**
@@ -100,6 +104,59 @@ class ServiceInfoMenu
     {
         $count = wp_count_posts(self::POST_TYPE);
         return isset($count->publish) ? (int) $count->publish : 0;
+    }
+
+    
+
+    /**
+     * Register REST route for ESI badge fragments
+     *
+     * @return void
+     */
+    public function registerEsiRestRoute(): void
+    {
+        register_rest_route(
+            'modularity-service-info/v1',
+            '/badge',
+            [
+                'methods'  => 'GET',
+                'callback' => [$this, 'serveEsiBadgeRestRaw'],
+                'permission_callback' => '__return_true',
+            ]
+        );
+    }
+
+    /**
+     * Serve raw badge HTML for ESI requests.
+     * We echo and exit to ensure the REST response is plain HTML (LiteSpeed expects raw fragment).
+     *
+     * @return void
+     */
+    public function serveEsiBadgeRestRaw()
+    {
+        $count = $this->getServiceInfoCount();
+
+        if ($count < 1) {
+            echo '';
+            exit;
+        }
+
+        $badge = sprintf(
+            '<span class="service-info-badge" aria-label="%s">%d</span>',
+            esc_attr(sprintf(
+                _n('%d active service information', '%d active service informations', $count, 'modularity-service-info'),
+                $count
+            )),
+            $count
+        );
+
+        // Ensure correct content type for raw HTML
+        if (!headers_sent()) {
+            header('Content-Type: text/html; charset=utf-8');
+        }
+
+        echo $badge;
+        exit;
     }
 
     /*
@@ -413,18 +470,40 @@ class ServiceInfoMenu
             return $items;
         }
 
+        // Check if LiteSpeed ESI support is enabled in settings and plugin is active
+        $esiEnabled = false;
+        $esiSetting = false;
+        if (function_exists('get_field')) {
+            $esiSetting = get_field('litespeed_esi_cache_support', 'service-information-settings');
+        }
+
+        if ($esiSetting && LiteSpeed::isPluginActive() && LiteSpeed::isRunningOnServer()) {
+            $esiEnabled = true;
+        }
+
         foreach ($items as $item) {
             if (isset($item->type) && $item->type === self::ITEM_TYPE) {
-                $badge = sprintf(
-                    '<span class="service-info-badge" aria-label="%s">%d</span>',
-                    esc_attr(sprintf(
-                        _n('%d active service information', '%d active service informations', $count, 'modularity-service-info'),
+                if ($esiEnabled) {
+                    // Render an ESI include that will be fetched by the LiteSpeed server
+                    $src = add_query_arg(
+                        ['menu_item_id' => isset($item->ID) ? (int) $item->ID : 0],
+                        rest_url('modularity-service-info/v1/badge')
+                    );
+
+                    $esi = sprintf('<esi:include src="%s" />', esc_url($src));
+                    $item->title .= $esi;
+                } else {
+                    $badge = sprintf(
+                        '<span class="service-info-badge" aria-label="%s">%d</span>',
+                        esc_attr(sprintf(
+                            _n('%d active service information', '%d active service informations', $count, 'modularity-service-info'),
+                            $count
+                        )),
                         $count
-                    )),
-                    $count
-                );
-                
-                $item->title .= $badge;
+                    );
+
+                    $item->title .= $badge;
+                }
             }
         }
 

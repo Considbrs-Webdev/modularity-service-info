@@ -2,6 +2,8 @@
 
 namespace ModularityServiceInfo\Admin;
 
+use ModularityServiceInfo\Helper\LiteSpeed;
+
 /**
  * Class Settings
  * 
@@ -14,6 +16,9 @@ class Settings
     public function __construct()
     {
         add_action('acf/init', [$this, 'registerOptionsPage']);
+        
+        // Hide the LiteSpeed ESI toggle if we're not running on a LiteSpeed server
+        add_filter('acf/prepare_field/name=litespeed_esi_cache_support', [$this, 'maybeHideEsiField']);
     }
 
     /**
@@ -33,5 +38,20 @@ class Settings
                 'capability'  => 'manage_options',
             ]);
         }
+    }
+
+    /**
+     * Hide the LiteSpeed ESI field when the server does not support LiteSpeed
+     *
+     * @param array|bool $field
+     * @return array|bool
+     */
+    public function maybeHideEsiField($field)
+    {
+        if (!LiteSpeed::isRunningOnServer()) {
+            return false; // ACF will not render the field
+        }
+
+        return $field;
     }
 }
