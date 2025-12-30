@@ -6,6 +6,7 @@ use ModularityServiceInfo\Helper\CacheBust;
 use ModularityServiceInfo\PostType\ServiceInformation;
 use ModularityServiceInfo\Admin\Settings;
 use ModularityServiceInfo\Cron\UnpublishExpiredPosts;
+use ModularityServiceInfo\Admin\ServiceInfoMenu;
 
 /**
  * Class App
@@ -25,6 +26,9 @@ class App {
 
         // Initialize cron
         new UnpublishExpiredPosts();
+
+        // Initialize menu functionality
+        new ServiceInfoMenu();
 
         // Register module with Modularity
         add_action('init', [$this, 'registerModule']);
