@@ -1,20 +1,18 @@
 .service-info-badge {
-  --badge-min-width: 1.25em;
-  --badge-height: 1.25em;
-  --badge-padding: 0.15em 0.4em;
+  --badge-min-size: 1.25em;
+  --badge-padding: 0.5em;
   --badge-margin-left: 0.5em;
   --badge-font-size: 0.75em;
   --badge-font-weight: var(--font-weight-button, 700);
   --badge-line-height: 1;
   --badge-color: var(--color-white, #fff);
   --badge-background-color: var(--color-danger, #d73740);
-  --badge-border-radius: 1em;
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: var(--badge-min-width);
-  height: var(--badge-height);
+  min-width: var(--badge-min-size);
+  min-height: var(--badge-min-size);
   padding: var(--badge-padding);
   margin-left: var(--badge-margin-left);
   font-size: var(--badge-font-size);
@@ -22,8 +20,20 @@
   line-height: var(--badge-line-height);
   color: var(--badge-color);
   background-color: var(--badge-background-color);
-  border-radius: var(--badge-border-radius);
+  border-radius: 50%;
+  aspect-ratio: 1;
   vertical-align: middle;
+}
+
+.s-post-type-service-info-archive .c-link:has(.c-icon) {
+  position: relative;
+
+  .service-info-badge {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    z-index: 10;
+  }
 }
 
 .mod-service-info {

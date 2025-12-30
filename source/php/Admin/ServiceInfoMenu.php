@@ -75,7 +75,20 @@ class ServiceInfoMenu
     private function getServiceInfoUrl()
     {
         $url = get_field('service_information_page', 'service-information-settings');
-        return $url ?: false;
+
+        if ($url) {
+            return $url;
+        }
+
+        // Fallback: use the post type archive link if available
+        if (post_type_exists(self::POST_TYPE)) {
+            $archive_url = get_post_type_archive_link(self::POST_TYPE);
+            if ($archive_url && !is_wp_error($archive_url)) {
+                return $archive_url;
+            }
+        }
+
+        return false;
     }
 
     /**

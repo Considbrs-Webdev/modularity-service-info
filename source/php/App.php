@@ -7,6 +7,7 @@ use ModularityServiceInfo\PostType\ServiceInformation;
 use ModularityServiceInfo\Admin\Settings;
 use ModularityServiceInfo\Cron\UnpublishExpiredPosts;
 use ModularityServiceInfo\Admin\ServiceInfoMenu;
+use ModularityServiceInfo\Validation\ACF_Validation;
 
 /**
  * Class App
@@ -29,6 +30,9 @@ class App {
 
         // Initialize menu functionality
         new ServiceInfoMenu();
+
+        // Initialize validation handlers (ACF)
+        new ACF_Validation();
 
         // Register module with Modularity
         add_action('init', [$this, 'registerModule']);

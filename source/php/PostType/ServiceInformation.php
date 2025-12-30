@@ -72,6 +72,7 @@ class ServiceInformation
             'menu_position'      => 20,
             'menu_icon'          => 'dashicons-info',
             'supports'           => ['title', 'editor', 'thumbnail', 'excerpt', 'revisions'],
+            'show_in_nav_menus'  => false,
             'show_in_rest'       => true,
         ];
 
