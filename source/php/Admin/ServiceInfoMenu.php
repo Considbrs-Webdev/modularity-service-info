@@ -2,6 +2,7 @@
 
 namespace ModularityServiceInfo\Admin;
 
+use ModularityServiceInfo\PostType\ServiceInformation as PostType;
 use ModularityServiceInfo\Helper\LiteSpeed;
 
 /**
@@ -16,7 +17,6 @@ class ServiceInfoMenu
 {
     private const ITEM_TYPE = 'service-info';
     private const ITEM_OBJECT = 'service-info-archive';
-    private const POST_TYPE = 'service_information';
 
     /**
      * Constructor - Register all hooks
@@ -85,8 +85,8 @@ class ServiceInfoMenu
         }
 
         // Fallback: use the post type archive link if available
-        if (post_type_exists(self::POST_TYPE)) {
-            $archive_url = get_post_type_archive_link(self::POST_TYPE);
+        if (post_type_exists(PostType::POST_TYPE_NAME)) {
+            $archive_url = get_post_type_archive_link(PostType::POST_TYPE_NAME);
             if ($archive_url && !is_wp_error($archive_url)) {
                 return $archive_url;
             }
@@ -102,7 +102,7 @@ class ServiceInfoMenu
      */
     private function getServiceInfoCount(): int
     {
-        $count = wp_count_posts(self::POST_TYPE);
+        $count = wp_count_posts(PostType::POST_TYPE_NAME);
         return isset($count->publish) ? (int) $count->publish : 0;
     }
 

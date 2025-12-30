@@ -21,6 +21,7 @@ if (! defined('WPINC')) {
 define('MODULARITYSERVICEINFO_PATH', plugin_dir_path(__FILE__));
 define('MODULARITYSERVICEINFO_URL', plugins_url('', __FILE__));
 define('MODULARITYSERVICEINFO_MODULE_VIEW_PATH', plugin_dir_path(__FILE__) . 'source/php/Module/views');
+define('MODULARITYSERVICEINFO_VIEW_PATH', plugin_dir_path(__FILE__) . 'views');
 define('MODULARITYSERVICEINFO_MODULE_PATH', MODULARITYSERVICEINFO_PATH . 'source/php/Module/');
 
 // Load text domain

@@ -77,11 +77,11 @@ class ServiceInfo extends \Modularity\Module
      */
     public function style(): void
     {
-        $styleFile = CacheBust::name('css/modularity-service-info.css');
+        $styleFile = CacheBust::name('css/modularity-service-info-module.css');
 
         if ($styleFile) {
             wp_enqueue_style(
-                'modularity-service-info',
+                'modularity-service-info-module',
                 MODULARITYSERVICEINFO_URL . '/assets/dist/' . $styleFile,
                 [],
                 null
@@ -95,6 +95,7 @@ class ServiceInfo extends \Modularity\Module
      */
     public function script(): void
     {
+        return;
         $scriptFile = CacheBust::name('js/modularity-service-info.js');
 
         if ($scriptFile) {

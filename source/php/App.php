@@ -37,7 +37,25 @@ class App {
         // Register module with Modularity
         add_action('init', [$this, 'registerModule']);
 
-        add_filter('acf/load_field_group', [$this, 'removeAdvancedTermSettings']);
+        // Add general view path
+        add_action('template_redirect', function () {
+            if (get_post_type() === 'service_information') {
+                add_filter('Municipio/viewPaths', array($this, 'addViewPaths'), 2, 1);
+            }
+        }, 10);
+
+        // Enqueue frontend styles
+        add_action('wp_enqueue_scripts', [$this, 'enqueueFrontendStyles']);
+    }
+
+    /**
+     * Add searchable blade template paths
+     * @param array  $array Template paths
+     * @return array        Modified template paths
+     */
+    public function addViewPaths($array)
+    {
+        return array_merge( [MODULARITYSERVICEINFO_VIEW_PATH], $array );
     }
 
     /**
@@ -54,24 +72,16 @@ class App {
         }
     }
 
-    public function removeAdvancedTermSettings($field_group) {
-        // Target this specific field group
-        if ($field_group['key'] !== 'group_63e6002cc129c') {
-            return $field_group;
+    public function enqueueFrontendStyles(): void {
+        $styleFile = CacheBust::name('css/modularity-service-info-general.css');
+
+        if ($styleFile) {
+            wp_enqueue_style(
+                'modularity-service-info-general',
+                MODULARITYSERVICEINFO_URL . '/assets/dist/' . $styleFile,
+                [],
+                null
+            );
         }
-
-        // Only on taxonomy edit screens
-        if (!is_admin() || empty($_GET['taxonomy'])) {
-            return $field_group;
-        }
-
-        $taxonomy = sanitize_text_field($_GET['taxonomy']);
-
-        // Disable for specific taxonomy
-        if ($taxonomy === 'service_category') {
-            return false; // ← removes the field group completely
-        }
-
-        return $field_group;
     }
 }

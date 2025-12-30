@@ -11,10 +11,16 @@ namespace ModularityServiceInfo\PostType;
  */ 
 class ServiceInformation
 {
+    public const POST_TYPE_NAME = 'service_information';
+
     public function __construct()
     {
+        // Register post type and taxonomy
         add_action('init', [$this, 'registerPostType']);
         add_action('init', [$this, 'registerTaxonomy']);
+
+        // Remove advanced term settings from ACF if needed
+        add_filter('acf/load_field_group', [$this, 'removeAdvancedTermSettings']);
     }
 
     /**
@@ -76,7 +82,7 @@ class ServiceInformation
             'show_in_rest'       => true,
         ];
 
-        register_post_type('service_information', $args);
+        register_post_type(self::POST_TYPE_NAME, $args);
     }
 
     /**
@@ -123,5 +129,32 @@ class ServiceInformation
         ];
 
         register_taxonomy('service_category', ['service_information'], $args);
+    }
+
+    /**
+     * Remove advanced term settings ACF field group for specific taxonomy
+     *
+     * @param array $field_group
+     * @return array|false
+     */
+    public function removeAdvancedTermSettings($field_group) {
+        // Target this specific field group
+        if ($field_group['key'] !== 'group_63e6002cc129c') {
+            return $field_group;
+        }
+
+        // Only on taxonomy edit screens
+        if (!is_admin() || empty($_GET['taxonomy'])) {
+            return $field_group;
+        }
+
+        $taxonomy = sanitize_text_field($_GET['taxonomy']);
+
+        // Disable for specific taxonomy
+        if ($taxonomy === 'service_category') {
+            return false; // ← removes the field group completely
+        }
+
+        return $field_group;
     }
 }
