@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-12-29T13:40:14+00:00\n"
+"POT-Creation-Date: 2025-12-30T14:53:51+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: modularity-service-info\n"
@@ -40,7 +40,7 @@ msgid "https://github.com/considbrs-webdev"
 msgstr ""
 
 #: source/php/AcfFields/php/general-settings.php:8
-#: source/php/Admin/Settings.php:28
+#: source/php/Admin/Settings.php:33
 msgid "Service Information Settings"
 msgstr ""
 
@@ -62,6 +62,54 @@ msgstr ""
 
 #: source/php/AcfFields/php/general-settings.php:37
 msgid "The page where you present service information"
+msgstr ""
+
+#: source/php/AcfFields/php/general-settings.php:59
+msgid "LiteSpeed ESI cache support"
+msgstr ""
+
+#: source/php/AcfFields/php/general-settings.php:63
+msgid "Try to add support for updating the badge even though the page is cached with LiteSpeed. This will use LiteSpeed ESI to properly update only the badge part of the page."
+msgstr ""
+
+#: source/php/AcfFields/php/module-settings.php:8
+msgid "Service Information Module"
+msgstr ""
+
+#: source/php/AcfFields/php/module-settings.php:12
+msgid "Archive mode"
+msgstr ""
+
+#: source/php/AcfFields/php/module-settings.php:16
+msgid "Will fetch and display all published posts"
+msgstr ""
+
+#: source/php/AcfFields/php/module-settings.php:33
+msgid "Posts to show"
+msgstr ""
+
+#: source/php/AcfFields/php/module-settings.php:64
+msgid "Show icons?"
+msgstr ""
+
+#: source/php/AcfFields/php/module-settings.php:85
+msgid "Link to service information archive?"
+msgstr ""
+
+#: source/php/AcfFields/php/module-settings.php:114
+msgid "Group by categories"
+msgstr ""
+
+#: source/php/AcfFields/php/module-settings.php:118
+msgid "Will group service information according to their categories"
+msgstr ""
+
+#: source/php/AcfFields/php/module-settings.php:143
+msgid "Show empty categories"
+msgstr ""
+
+#: source/php/AcfFields/php/module-settings.php:147
+msgid "Shows category heading even if it doesn't contain any published information at the moment"
 msgstr ""
 
 #: source/php/AcfFields/php/post-data.php:8
@@ -96,7 +144,29 @@ msgstr ""
 msgid "Delete post"
 msgstr ""
 
-#: source/php/Admin/Settings.php:29
+#: source/php/AcfFields/php/taxonomy-settings.php:8
+msgid "Service Information Category"
+msgstr ""
+
+#: source/php/AcfFields/php/taxonomy-settings.php:12
+msgid "Icon"
+msgstr ""
+
+#: source/php/Admin/ServiceInfoMenu.php:147
+#: source/php/Admin/ServiceInfoMenu.php:499
+msgid "%d active service information"
+msgid_plural "%d active service informations"
+msgstr[0] ""
+msgstr[1] ""
+
+#: source/php/Admin/ServiceInfoMenu.php:177
+#: source/php/Admin/ServiceInfoMenu.php:178
+#: source/php/Admin/ServiceInfoMenu.php:209
+#: source/php/Admin/ServiceInfoMenu.php:211
+#: source/php/Admin/ServiceInfoMenu.php:234
+#: source/php/Admin/ServiceInfoMenu.php:258
+#: source/php/Admin/ServiceInfoMenu.php:377
+#: source/php/Admin/Settings.php:34
 #: source/php/Module/ServiceInfo.php:21
 #: source/php/Module/ServiceInfo.php:22
 #: source/php/PostType/ServiceInformation.php:31
@@ -104,6 +174,14 @@ msgstr ""
 #: source/php/PostType/ServiceInformation.php:33
 #: source/php/PostType/ServiceInformation.php:34
 msgid "Service Information"
+msgstr ""
+
+#: source/php/Admin/ServiceInfoMenu.php:254
+msgid "No service information page set."
+msgstr ""
+
+#: source/php/Admin/ServiceInfoMenu.php:277
+msgid "Add to Menu"
 msgstr ""
 
 #: source/php/Module/ServiceInfo.php:23
@@ -118,7 +196,7 @@ msgstr ""
 msgid "View all service information"
 msgstr ""
 
-#: source/php/Module/ServiceInfo.php:300
+#: source/php/Module/ServiceInfo.php:298
 msgid "Uncategorized"
 msgstr ""
 
@@ -206,83 +284,91 @@ msgstr ""
 msgid "Service information for the site"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:89
-#: source/php/PostType/ServiceInformation.php:91
+#: source/php/PostType/ServiceInformation.php:90
+#: source/php/PostType/ServiceInformation.php:92
 msgid "Service Categories"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:90
+#: source/php/PostType/ServiceInformation.php:91
 msgid "Service Category"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:92
+#: source/php/PostType/ServiceInformation.php:93
 msgid "All Service Categories"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:93
+#: source/php/PostType/ServiceInformation.php:94
 msgid "Parent Service Category"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:94
+#: source/php/PostType/ServiceInformation.php:95
 msgid "Parent Service Category:"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:95
+#: source/php/PostType/ServiceInformation.php:96
 msgid "New Service Category Name"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:96
+#: source/php/PostType/ServiceInformation.php:97
 msgid "Add New Service Category"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:97
+#: source/php/PostType/ServiceInformation.php:98
 msgid "Edit Service Category"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:98
+#: source/php/PostType/ServiceInformation.php:99
 msgid "Update Service Category"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:99
+#: source/php/PostType/ServiceInformation.php:100
 msgid "View Service Category"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:100
+#: source/php/PostType/ServiceInformation.php:101
 msgid "Separate service categories with commas"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:101
+#: source/php/PostType/ServiceInformation.php:102
 msgid "Add or remove service categories"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:102
+#: source/php/PostType/ServiceInformation.php:103
 msgid "Choose from the most used"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:103
+#: source/php/PostType/ServiceInformation.php:104
 msgid "Popular Service Categories"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:104
+#: source/php/PostType/ServiceInformation.php:105
 msgid "Search Service Categories"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:105
+#: source/php/PostType/ServiceInformation.php:106
 msgid "Not Found"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:106
+#: source/php/PostType/ServiceInformation.php:107
 msgid "No service categories"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:107
+#: source/php/PostType/ServiceInformation.php:108
 msgid "Service categories list"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:108
+#: source/php/PostType/ServiceInformation.php:109
 msgid "Service categories list navigation"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:113
+#: source/php/PostType/ServiceInformation.php:114
 msgid "Categories for service information"
+msgstr ""
+
+#: source/php/Validation/ACF_Validation.php:35
+msgid "Lowercase letters, dashes and slashes only. Cannot start or end with dash or slash."
+msgstr ""
+
+#: source/php/Validation/ACF_Validation.php:66
+msgid "Invalid value."
 msgstr ""

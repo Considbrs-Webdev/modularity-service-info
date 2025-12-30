@@ -5,14 +5,15 @@ msgstr ""
 "Project-Id-Version: Modularity Service Information 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/modularity-"
 "service-info\n"
-"POT-Creation-Date: 2025-12-29T13:40:14+00:00\n"
-"PO-Revision-Date: 2025-12-29 14:41+0100\n"
+"POT-Creation-Date: 2025-12-30T14:53:51+00:00\n"
+"PO-Revision-Date: 2025-12-30 15:59+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.8\n"
 "X-Domain: modularity-service-info\n"
 
@@ -42,7 +43,7 @@ msgid "https://github.com/considbrs-webdev"
 msgstr "https://github.com/considbrs-webdev"
 
 #: source/php/AcfFields/php/general-settings.php:8
-#: source/php/Admin/Settings.php:28
+#: source/php/Admin/Settings.php:33
 msgid "Service Information Settings"
 msgstr "Inställningar för driftinformation"
 
@@ -69,6 +70,64 @@ msgstr "Sida för driftinformation"
 #: source/php/AcfFields/php/general-settings.php:37
 msgid "The page where you present service information"
 msgstr "Sidan där du presenterar driftinformation"
+
+#: source/php/AcfFields/php/general-settings.php:59
+msgid "LiteSpeed ESI cache support"
+msgstr "Stöd för LiteSpeed ESI-cache"
+
+#: source/php/AcfFields/php/general-settings.php:63
+msgid ""
+"Try to add support for updating the badge even though the page is cached "
+"with LiteSpeed. This will use LiteSpeed ESI to properly update only the "
+"badge part of the page."
+msgstr ""
+"Försöker lägga till stöd för att uppdatera antal ärenden-märket även när "
+"sidan är cachad av LiteSpeed. Detta använder LiteSpeed ESI för att endast "
+"uppdatera märkets del av sidan."
+
+#: source/php/AcfFields/php/module-settings.php:8
+msgid "Service Information Module"
+msgstr "Modul för driftinformation"
+
+#: source/php/AcfFields/php/module-settings.php:12
+msgid "Archive mode"
+msgstr "Arkivläge"
+
+#: source/php/AcfFields/php/module-settings.php:16
+msgid "Will fetch and display all published posts"
+msgstr "Hämtar och visar alla publicerade inlägg"
+
+#: source/php/AcfFields/php/module-settings.php:33
+msgid "Posts to show"
+msgstr "Inlägg att visa"
+
+#: source/php/AcfFields/php/module-settings.php:64
+msgid "Show icons?"
+msgstr "Visa ikoner?"
+
+#: source/php/AcfFields/php/module-settings.php:85
+msgid "Link to service information archive?"
+msgstr "Länka till arkiv för driftinformation?"
+
+#: source/php/AcfFields/php/module-settings.php:114
+msgid "Group by categories"
+msgstr "Gruppera efter kategorier"
+
+#: source/php/AcfFields/php/module-settings.php:118
+msgid "Will group service information according to their categories"
+msgstr "Grupperar driftinformation efter kategori"
+
+#: source/php/AcfFields/php/module-settings.php:143
+msgid "Show empty categories"
+msgstr "Visa tomma kategorier"
+
+#: source/php/AcfFields/php/module-settings.php:147
+msgid ""
+"Shows category heading even if it doesn't contain any published information "
+"at the moment"
+msgstr ""
+"Visar kategorirubrik även om den för tillfället inte innehåller någon "
+"publicerad information"
 
 #: source/php/AcfFields/php/post-data.php:8
 msgid "Service information"
@@ -103,14 +162,43 @@ msgstr "Sätt inlägg till utkast"
 msgid "Delete post"
 msgstr "Ta bort inlägg"
 
-#: source/php/Admin/Settings.php:29 source/php/Module/ServiceInfo.php:21
-#: source/php/Module/ServiceInfo.php:22
+#: source/php/AcfFields/php/taxonomy-settings.php:8
+msgid "Service Information Category"
+msgstr "Kategori för driftinformation"
+
+#: source/php/AcfFields/php/taxonomy-settings.php:12
+msgid "Icon"
+msgstr "Ikon"
+
+#: source/php/Admin/ServiceInfoMenu.php:147
+#: source/php/Admin/ServiceInfoMenu.php:499
+msgid "%d active service information"
+msgid_plural "%d active service informations"
+msgstr[0] "%d aktivt driftärende"
+msgstr[1] "%d aktiva driftärenden"
+
+#: source/php/Admin/ServiceInfoMenu.php:177
+#: source/php/Admin/ServiceInfoMenu.php:178
+#: source/php/Admin/ServiceInfoMenu.php:209
+#: source/php/Admin/ServiceInfoMenu.php:211
+#: source/php/Admin/ServiceInfoMenu.php:234
+#: source/php/Admin/ServiceInfoMenu.php:258
+#: source/php/Admin/ServiceInfoMenu.php:377 source/php/Admin/Settings.php:34
+#: source/php/Module/ServiceInfo.php:21 source/php/Module/ServiceInfo.php:22
 #: source/php/PostType/ServiceInformation.php:31
 #: source/php/PostType/ServiceInformation.php:32
 #: source/php/PostType/ServiceInformation.php:33
 #: source/php/PostType/ServiceInformation.php:34
 msgid "Service Information"
 msgstr "Driftinformation"
+
+#: source/php/Admin/ServiceInfoMenu.php:254
+msgid "No service information page set."
+msgstr "Ingen sida för driftinformation är inställd."
+
+#: source/php/Admin/ServiceInfoMenu.php:277
+msgid "Add to Menu"
+msgstr "Lägg till i meny"
 
 #: source/php/Module/ServiceInfo.php:23
 msgid "A service information module."
@@ -124,7 +212,7 @@ msgstr "Ingen driftinformation tillgänglig för tillfället."
 msgid "View all service information"
 msgstr "Visa all driftinformation"
 
-#: source/php/Module/ServiceInfo.php:300
+#: source/php/Module/ServiceInfo.php:298
 msgid "Uncategorized"
 msgstr "Okategoriserad"
 
@@ -212,83 +300,95 @@ msgstr "Lista över driftinformation"
 msgid "Service information for the site"
 msgstr "Driftinformation för webbplatsen"
 
-#: source/php/PostType/ServiceInformation.php:89
-#: source/php/PostType/ServiceInformation.php:91
+#: source/php/PostType/ServiceInformation.php:90
+#: source/php/PostType/ServiceInformation.php:92
 msgid "Service Categories"
 msgstr "Driftkategorier"
 
-#: source/php/PostType/ServiceInformation.php:90
+#: source/php/PostType/ServiceInformation.php:91
 msgid "Service Category"
 msgstr "Driftkategori"
 
-#: source/php/PostType/ServiceInformation.php:92
+#: source/php/PostType/ServiceInformation.php:93
 msgid "All Service Categories"
 msgstr "Alla driftkategorier"
 
-#: source/php/PostType/ServiceInformation.php:93
+#: source/php/PostType/ServiceInformation.php:94
 msgid "Parent Service Category"
 msgstr "Förälder driftkategori"
 
-#: source/php/PostType/ServiceInformation.php:94
+#: source/php/PostType/ServiceInformation.php:95
 msgid "Parent Service Category:"
 msgstr "Förälder driftkategori:"
 
-#: source/php/PostType/ServiceInformation.php:95
+#: source/php/PostType/ServiceInformation.php:96
 msgid "New Service Category Name"
 msgstr "Namn på ny driftkategori"
 
-#: source/php/PostType/ServiceInformation.php:96
+#: source/php/PostType/ServiceInformation.php:97
 msgid "Add New Service Category"
 msgstr "Lägg till ny driftkategori"
 
-#: source/php/PostType/ServiceInformation.php:97
+#: source/php/PostType/ServiceInformation.php:98
 msgid "Edit Service Category"
 msgstr "Redigera driftkategori"
 
-#: source/php/PostType/ServiceInformation.php:98
+#: source/php/PostType/ServiceInformation.php:99
 msgid "Update Service Category"
 msgstr "Uppdatera driftkategori"
 
-#: source/php/PostType/ServiceInformation.php:99
+#: source/php/PostType/ServiceInformation.php:100
 msgid "View Service Category"
 msgstr "Visa driftkategori"
 
-#: source/php/PostType/ServiceInformation.php:100
+#: source/php/PostType/ServiceInformation.php:101
 msgid "Separate service categories with commas"
 msgstr "Separera driftkategorier med kommatecken"
 
-#: source/php/PostType/ServiceInformation.php:101
+#: source/php/PostType/ServiceInformation.php:102
 msgid "Add or remove service categories"
 msgstr "Lägg till eller ta bort driftkategorier"
 
-#: source/php/PostType/ServiceInformation.php:102
+#: source/php/PostType/ServiceInformation.php:103
 msgid "Choose from the most used"
 msgstr "Välj från de mest använda"
 
-#: source/php/PostType/ServiceInformation.php:103
+#: source/php/PostType/ServiceInformation.php:104
 msgid "Popular Service Categories"
 msgstr "Populära driftkategorier"
 
-#: source/php/PostType/ServiceInformation.php:104
+#: source/php/PostType/ServiceInformation.php:105
 msgid "Search Service Categories"
 msgstr "Sök driftkategorier"
 
-#: source/php/PostType/ServiceInformation.php:105
+#: source/php/PostType/ServiceInformation.php:106
 msgid "Not Found"
 msgstr "Hittades inte"
 
-#: source/php/PostType/ServiceInformation.php:106
+#: source/php/PostType/ServiceInformation.php:107
 msgid "No service categories"
 msgstr "Inga driftkategorier"
 
-#: source/php/PostType/ServiceInformation.php:107
+#: source/php/PostType/ServiceInformation.php:108
 msgid "Service categories list"
 msgstr "Lista över driftkategorier"
 
-#: source/php/PostType/ServiceInformation.php:108
+#: source/php/PostType/ServiceInformation.php:109
 msgid "Service categories list navigation"
 msgstr "Navigering för lista över driftkategorier"
 
-#: source/php/PostType/ServiceInformation.php:113
+#: source/php/PostType/ServiceInformation.php:114
 msgid "Categories for service information"
 msgstr "Kategorier för driftinformation"
+
+#: source/php/Validation/ACF_Validation.php:35
+msgid ""
+"Lowercase letters, dashes and slashes only. Cannot start or end with dash or "
+"slash."
+msgstr ""
+"Endast gemener, bindestreck och snedstreck tillåtna. Kan inte börja eller "
+"sluta med bindestreck eller snedstreck."
+
+#: source/php/Validation/ACF_Validation.php:66
+msgid "Invalid value."
+msgstr "Ogiltigt värde."
