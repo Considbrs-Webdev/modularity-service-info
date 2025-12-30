@@ -55,10 +55,9 @@ class ServiceInfo extends \Modularity\Module
         }
 
         $data['translations'] = [
-            'noPostsForCategory' => __('No service information available at the moment.', 'modularity-service-info'),
+            'noServiceInformationAvailable' => __('No service information available at the moment.', 'modularity-service-info'),
             'archiveLinkText' => __('View all service information', 'modularity-service-info'),
         ];
-
 
         return $data;
     }

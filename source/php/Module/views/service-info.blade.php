@@ -26,7 +26,7 @@
                     @typography([
                         'element' => 'span'
                     ])
-                        {{ $translations['noPostsForCategory'] }}
+                        {{ $translations['noServiceInformationAvailable'] }}
                     @endtypography
                 @else
                     <ul class="mod-service-info__list">
@@ -61,9 +61,15 @@
                 @endif
             </div>
         @endforeach
+    @else
+        @typography([
+            'element' => 'span'
+        ])
+            {{ $translations['noServiceInformationAvailable'] }}
+        @endtypography
     @endif
 
-    @if ($linkToServiceInformationArchive && !$archiveMode)
+    @if (!empty($posts) && $linkToServiceInformationArchive && !$archiveMode)
         <div class="mod-service-info__archive-link">
             @button([
                 'text' => $translations['archiveLinkText'],
