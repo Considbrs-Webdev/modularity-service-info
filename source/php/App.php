@@ -8,6 +8,7 @@ use ModularityServiceInfo\Admin\Settings;
 use ModularityServiceInfo\Cron\UnpublishExpiredPosts;
 use ModularityServiceInfo\Admin\ServiceInfoMenu;
 use ModularityServiceInfo\Validation\ACF_Validation;
+use ModularityServiceInfo\Decorators\Decorators;
 
 /**
  * Class App
@@ -33,6 +34,9 @@ class App {
 
         // Initialize validation handlers (ACF)
         new ACF_Validation();
+
+        // Initialize decorators
+        new Decorators();
 
         // Register module with Modularity
         add_action('init', [$this, 'registerModule']);
