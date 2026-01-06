@@ -1,16 +1,25 @@
 .mod-service-info {
-  --transition-style: background-color 0.2s ease;
+  --archive-link-gap: calc(var(--base, 1em) * 2);
   --list-gap: var(--base, 1rem);
   --item-background-color: var(--color-background-card, #f5f5f5);
+  --item-background-color-hover: color-mix(
+    in srgb,
+    var(--item-background-color),
+    10% black
+  );
   --item-border-radius: var(--radius-sm, 5px);
   --item-padding: var(--base, 1rem);
   --icon-container-size: 4rem;
-  --icon--size: 2rem;
+  --icon-size: 2rem;
+  --icon-text-color: var(--color-base, #000);
+  --icon-text-color-hover: var(--color-base, #000);
   --icon-background-color: var(--color-background, #fff);
   --icon-border-radius: var(--radius-sm, 5px);
   --date-font-size: 0.875rem;
   --date-color: #666;
-  --archive-link-gap: calc(var(--base, 1em) * 2);
+  --title-font-size: 1.125rem;
+  --title-font-weight: 600;
+  --transition-style: background-color 0.2s ease;
 
   display: flex;
   flex-direction: column;
@@ -27,30 +36,26 @@
   }
 
   &__item {
-    background-color: var(--item-background-color);
-    border-radius: var(--item-border-radius);
-    padding: var(--item-padding);
-    transition: var(--transition-style);
-
-    &:hover {
-      background-color: color-mix(
-        in srgb,
-        var(--item-background-color),
-        10% black
-      );
-    }
-
     & + & {
       margin-top: 0;
     }
   }
 
   &__link {
-    display: flex;
     align-items: flex-start;
+    background-color: var(--item-background-color);
+    border-radius: var(--item-border-radius);
+    color: var(--item-text-color);
+    display: flex;
     gap: 1rem;
+    padding: var(--item-padding);
     text-decoration: none;
-    color: inherit;
+    transition: var(--transition-style);
+
+    &:hover {
+      background-color: var(--item-background-color-hover);
+      color: var(--item-text-color-hover);
+    }
   }
 
   &__icon {
@@ -59,13 +64,15 @@
     height: var(--icon-container-size);
     background-color: var(--icon-background-color);
     border-radius: var(--icon-border-radius);
+    color: var(--icon-color);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: var(--icon--size);
+    font-size: var(--icon-size);
   }
 
   &__content {
+    color: var(--item-text-color);
     flex: 1;
     min-width: 0;
   }
@@ -78,6 +85,7 @@
 
   &__title {
     margin: 0;
-    font-weight: 600;
+    font-size: var(--title-font-size);
+    font-weight: var(--title-font-weight);
   }
 }
