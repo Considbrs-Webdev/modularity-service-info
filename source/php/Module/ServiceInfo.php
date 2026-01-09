@@ -7,6 +7,7 @@ namespace ModularityServiceInfo\Module;
 use ModularityServiceInfo\Helper\CacheBust;
 use ModularityServiceInfo\Helper\DateFormatter;
 use ModularityServiceInfo\Model\ServiceInfoPost;
+use ModularityServiceInfo\Helper\Settings;
 
 /**
  * Class ServiceInfo
@@ -73,10 +74,10 @@ class ServiceInfo extends \Modularity\Module
     }
 
     /**
-     * Enqueue styles
+     * Enqueue styles (disabled for now)
      * @return void
      */
-    public function style(): void
+    /* public function style(): void
     {
         $styleFile = CacheBust::name('css/modularity-service-info-module.css');
 
@@ -88,7 +89,7 @@ class ServiceInfo extends \Modularity\Module
                 null
             );
         }
-    }
+    } */
 
     /**
      * Enqueue scripts
@@ -154,7 +155,7 @@ class ServiceInfo extends \Modularity\Module
     private function getArchiveLink(): ?string
     {
         // Get custom archive link from options if available
-        $customLink = get_field('service_information_page', 'service-information-settings');
+        $customLink = Settings::getArchivePage();
         
         if (!empty($customLink)) {
             return $customLink;

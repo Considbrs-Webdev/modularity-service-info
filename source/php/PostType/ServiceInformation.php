@@ -2,6 +2,8 @@
 
 namespace ModularityServiceInfo\PostType;
 
+use ModularityServiceInfo\Helper\Settings;
+
 /**
  * Class ServiceInformation
  * 
@@ -30,8 +32,8 @@ class ServiceInformation
      */
     public function registerPostType(): void
     {
-        $slug = get_field('slug', 'service-information-settings') ?: apply_filters('Modularity/ServiceInformation/Posts/Slug', 'service-information');
-        $archivePage = get_field('service_information_page', 'service-information-settings');
+        $slug = Settings::getSlug();
+        $archivePage = Settings::getArchivePage();
         
         $labels = [
             'name'                  => __('Service Information', 'modularity-service-info'),

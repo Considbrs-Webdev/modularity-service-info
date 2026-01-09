@@ -4,6 +4,7 @@ namespace ModularityServiceInfo\Admin;
 
 use ModularityServiceInfo\PostType\ServiceInformation as PostType;
 use ModularityServiceInfo\Helper\LiteSpeed;
+use ModularityServiceInfo\Helper\Settings;
 
 /**
  * Class ServiceInfoMenu
@@ -78,7 +79,7 @@ class ServiceInfoMenu
      */
     private function getServiceInfoUrl()
     {
-        $url = get_field('service_information_page', 'service-information-settings');
+        $url = Settings::getArchivePage();
 
         if ($url) {
             return $url;

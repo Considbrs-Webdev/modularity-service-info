@@ -5,10 +5,12 @@ namespace ModularityServiceInfo;
 use ModularityServiceInfo\Helper\CacheBust;
 use ModularityServiceInfo\PostType\ServiceInformation;
 use ModularityServiceInfo\Admin\Settings;
+use ModularityServiceInfo\Helper\Settings as SettingsHelper;
 use ModularityServiceInfo\Cron\UnpublishExpiredPosts;
 use ModularityServiceInfo\Admin\ServiceInfoMenu;
 use ModularityServiceInfo\Validation\ACF_Validation;
 use ModularityServiceInfo\Decorators\Decorators;
+use SebastianBergmann\Type\FalseType;
 
 /**
  * Class App
@@ -50,6 +52,9 @@ class App {
 
         // Enqueue frontend styles
         add_action('wp_enqueue_scripts', [$this, 'enqueueFrontendStyles']);
+
+        // Fix breadcrumbs if service archive is custom page
+        add_filter('Municipio/Breadcrumbs/Items', [$this, 'maybeInsertArchiveIntoBreadcrumbs'], 20);
     }
 
     /**
@@ -87,5 +92,88 @@ class App {
                 null
             );
         }
+    }
+
+    /**
+     * Insert archive page and its ancestors into breadcrumb items after the first item.
+     *
+     * @param array $items
+     * @return array
+     */
+    public function maybeInsertArchiveIntoBreadcrumbs($items): array
+    {
+        if (!is_singular(ServiceInformation::POST_TYPE_NAME)) {
+            return $items;
+        }
+
+        $customArchiveLinkId = SettingsHelper::getArchivePage(false);
+        if (empty($customArchiveLinkId)) {
+            return $items;
+        }
+
+        // Ensure we have the post ID
+        $archiveId = (int) $customArchiveLinkId;
+        if ($archiveId <= 0 || get_post_status($archiveId) === false) {
+            return $items;
+        }
+
+        // Get ancestors from top-most down to direct parent
+        $ancestors = array_reverse(get_post_ancestors($archiveId));
+
+        // If no ancestors and archive is already present, nothing to do
+        if (empty($ancestors) && array_key_exists($archiveId, $items)) {
+            return $items;
+        }
+
+        // Build insertion items keyed by post ID, skipping duplicates
+        $insertItems = [];
+        foreach ($ancestors as $ancestorId) {
+            if (array_key_exists($ancestorId, $items)) {
+                continue;
+            }
+
+            $insertItems[$ancestorId] = [
+                'label' => get_the_title($ancestorId),
+                'href' => get_permalink($ancestorId),
+                'current' => false,
+                'icon' => 'chevron_right',
+            ];
+        }
+
+        // Add archive page itself if not already in items
+        if (!array_key_exists($archiveId, $items)) {
+            $insertItems[$archiveId] = [
+                'label' => get_the_title($archiveId),
+                'href' => get_permalink($archiveId),
+                'current' => false,
+                'icon' => 'chevron_right',
+            ];
+        }
+
+        if (empty($insertItems)) {
+            return $items;
+        }
+
+        // Rebuild items: keep first element, insert new items, then remaining
+        $newItems = [];
+        $keys = array_keys($items);
+        $firstKey = array_shift($keys);
+
+        // Add first original item
+        $newItems[$firstKey] = $items[$firstKey];
+
+        // Add inserted ancestors + archive
+        foreach ($insertItems as $k => $v) {
+            $newItems[$k] = $v;
+        }
+
+        // Add remaining original items in original order
+        foreach ($keys as $k) {
+            if (isset($items[$k])) {
+                $newItems[$k] = $items[$k];
+            }
+        }
+
+        return $newItems;
     }
 }

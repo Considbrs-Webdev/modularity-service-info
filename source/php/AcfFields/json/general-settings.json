@@ -28,7 +28,7 @@
             "label": "Service information page",
             "name": "service_information_page",
             "aria-label": "",
-            "type": "page_link",
+            "type": "post_object",
             "instructions": "The page where you present service information",
             "required": 0,
             "conditional_logic": 0,
@@ -44,10 +44,19 @@
                 "publish"
             ],
             "taxonomy": "",
-            "allow_archives": 0,
+            "return_format": "id",
             "multiple": 0,
+            "save_custom": 0,
+            "save_post_status": "publish",
+            "acfe_bidirectional": {
+                "acfe_bidirectional_enabled": "0"
+            },
             "allow_null": 0,
-            "allow_in_bindings": 0
+            "allow_in_bindings": 0,
+            "bidirectional": 0,
+            "ui": 1,
+            "bidirectional_target": [],
+            "save_post_type": ""
         },
         {
             "key": "field_6953e2f70b4e1",
