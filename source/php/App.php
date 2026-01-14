@@ -97,11 +97,15 @@ class App {
     /**
      * Insert archive page and its ancestors into breadcrumb items after the first item.
      *
-     * @param array $items
-     * @return array
+     * @param array|null $items
+     * @return array|null Modified breadcrumb items or null if no changes made
      */
-    public function maybeInsertArchiveIntoBreadcrumbs($items): array
+    public function maybeInsertArchiveIntoBreadcrumbs($items): array|null
     {
+        if (!is_array($items)) {
+            return $items;
+        }
+
         if (!is_singular(ServiceInformation::POST_TYPE_NAME)) {
             return $items;
         }
