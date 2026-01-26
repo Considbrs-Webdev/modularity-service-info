@@ -10,7 +10,6 @@ use ModularityServiceInfo\Cron\UnpublishExpiredPosts;
 use ModularityServiceInfo\Admin\ServiceInfoMenu;
 use ModularityServiceInfo\Validation\ACF_Validation;
 use ModularityServiceInfo\Decorators\Decorators;
-use SebastianBergmann\Type\FalseType;
 
 /**
  * Class App
