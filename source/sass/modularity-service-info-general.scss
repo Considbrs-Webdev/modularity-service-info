@@ -36,6 +36,23 @@
   }
 }
 
+/* Nav button (tabs menu): ensure proper layout for icon + text + badge */
+.c-nav__button:has(.service-info-badge),
+.c-button.c-nav__button:has(.service-info-badge) {
+  .c-button__label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  .service-info-badge {
+    position: absolute;
+    top: 45%;
+    left: 3px;
+    z-index: 2001;
+  }
+}
+
 .mod-service-info {
   --archive-link-gap: calc(var(--base, 1em) * 2);
   --list-gap: var(--base, 1rem);

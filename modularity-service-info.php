@@ -23,6 +23,7 @@ define('MODULARITYSERVICEINFO_URL', plugins_url('', __FILE__));
 define('MODULARITYSERVICEINFO_MODULE_VIEW_PATH', plugin_dir_path(__FILE__) . 'source/php/Module/views');
 define('MODULARITYSERVICEINFO_VIEW_PATH', plugin_dir_path(__FILE__) . 'views');
 define('MODULARITYSERVICEINFO_MODULE_PATH', MODULARITYSERVICEINFO_PATH . 'source/php/Module/');
+define('MODULARITYSERVICEINFO_COMPONENT_OVERRIDE_PATH', plugin_dir_path(__FILE__) . 'views');
 
 // Load text domain
 add_action('init', function () {
@@ -53,6 +54,15 @@ add_filter('/Modularity/externalViewPath', function ($arr) {
     $arr['mod-service-info'] = MODULARITYSERVICEINFO_MODULE_VIEW_PATH;
     return $arr;
 }, 10, 3);
+
+// Override Nav button style to allow HTML in labels (e.g. service-info-badge)
+add_filter('ComponentLibrary/ViewPaths', function ($paths) {
+    $overridePath = rtrim(MODULARITYSERVICEINFO_COMPONENT_OVERRIDE_PATH, DIRECTORY_SEPARATOR);
+    if (is_dir($overridePath)) {
+        return array_merge([$overridePath], (array) $paths);
+    }
+    return $paths;
+}, 10, 1);
 
 // Start application
 new ModularityServiceInfo\App();
