@@ -17,7 +17,7 @@ class UnpublishExpiredPosts
 
     public function registerCommand()
     {
-        if (defined('WP_CLI') && \WP_CLI) {
+        if (defined('WP_CLI') && constant('WP_CLI') === true) {
             \WP_CLI::add_command('service-info unpublish', array($this, 'unpublishCommand'));
         }
     }
@@ -76,7 +76,7 @@ class UnpublishExpiredPosts
                 }
 
                 if ($dryRun) {
-                    if (defined('WP_CLI') && \WP_CLI) {
+                    if (defined('WP_CLI') && constant('WP_CLI') === true) {
                         \WP_CLI::log(sprintf('Would move post "%s" (ID: %d) to %s', get_the_title(), $postId, $action));
                     }
                 } else {
@@ -86,11 +86,11 @@ class UnpublishExpiredPosts
                     ));
 
                     if (is_wp_error($updated)) {
-                        if (defined('WP_CLI') && \WP_CLI) {
+                        if (defined('WP_CLI') && constant('WP_CLI') === true) {
                             \WP_CLI::warning(sprintf('Failed to move post "%s" (ID: %d) to %s', get_the_title(), $postId, $action));
                         }
                     } else {
-                        if (defined('WP_CLI') && \WP_CLI) {
+                        if (defined('WP_CLI') && constant('WP_CLI') === true) {
                             \WP_CLI::success(sprintf('Moved post "%s" (ID: %d) to %s', get_the_title(), $postId, $action));
                         }
                     }
@@ -98,7 +98,7 @@ class UnpublishExpiredPosts
             }
             wp_reset_postdata();
         } else {
-            if ($dryRun && defined('WP_CLI') && \WP_CLI) {
+            if ($dryRun && defined('WP_CLI') && constant('WP_CLI') === true) {
                 \WP_CLI::log('No expired posts found.');
             }
         }

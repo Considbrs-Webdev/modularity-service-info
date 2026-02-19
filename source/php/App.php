@@ -7,6 +7,8 @@ use ModularityServiceInfo\PostType\ServiceInformation;
 use ModularityServiceInfo\Admin\Settings;
 use ModularityServiceInfo\Helper\Settings as SettingsHelper;
 use ModularityServiceInfo\Cron\UnpublishExpiredPosts;
+use ModularityServiceInfo\Import\ImporterRegistry;
+use ModularityServiceInfo\Import\ImportCron;
 use ModularityServiceInfo\Admin\ServiceInfoMenu;
 use ModularityServiceInfo\Validation\ACF_Validation;
 use ModularityServiceInfo\Decorators\Decorators;
@@ -29,6 +31,10 @@ class App {
 
         // Initialize cron
         new UnpublishExpiredPosts();
+
+        // Initialize import cron (with registry for third-party importers)
+        $importerRegistry = new ImporterRegistry();
+        new ImportCron($importerRegistry);
 
         // Initialize menu functionality
         new ServiceInfoMenu();
