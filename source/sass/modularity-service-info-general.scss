@@ -137,6 +137,10 @@
     font-size: var(--date-font-size);
     color: var(--date-color);
     margin-bottom: 0.5rem;
+
+    &:empty {
+      display: none;
+    }
   }
 
   &__title {

@@ -45,12 +45,15 @@ class App {
         // Initialize decorators
         new Decorators();
 
+        // Typesense search integration
+        new TypesenseSearchIntegration();
+
         // Register module with Modularity
         add_action('init', [$this, 'registerModule']);
 
-        // Add general view path
+        // Add general view path (service_information pages and search)
         add_action('template_redirect', function () {
-            if (get_post_type() === 'service_information') {
+            if (get_post_type() === 'service_information' || is_search()) {
                 add_filter('Municipio/viewPaths', array($this, 'addViewPaths'), 2, 1);
             }
         }, 10);
