@@ -126,36 +126,10 @@ class TypesenseSearchIntegration
                 $iconName = $icon;
             }
         }
+
         $rawIcon = is_string($iconName) && $iconName !== '' ? $iconName : 'fa-solid fa-circle-info';
-        $document['icon_name'] = $this->faToWaIconName($rawIcon);
+        $document['icon_name'] = $iconName;
 
         return $document;
-    }
-
-    /**
-     * Map Font Awesome icon names to wa-icon naming (e.g. fa-solid fa-circle-exclamation → exclamation).
-     *
-     * @param string $faIcon Font Awesome class string (e.g. fa-solid fa-circle-exclamation)
-     * @return string wa-icon name
-     */
-    private function faToWaIconName(string $faIcon): string
-    {
-        $map = [
-            'fa-solid fa-circle-exclamation' => 'exclamation',
-            'fa-regular fa-circle-exclamation' => 'exclamation',
-            'fa-solid fa-circle-info' => 'info',
-            'fa-regular fa-circle-info' => 'info',
-        ];
-        $normalized = preg_replace('/\s+/', ' ', trim($faIcon));
-        if (isset($map[$normalized])) {
-            return $map[$normalized];
-        }
-        // Fallback: use last part after final space (e.g. fa-solid fa-circle-exclamation → circle-exclamation)
-        $parts = explode(' ', $normalized);
-        $last = end($parts);
-        if ($last !== '' && strpos($last, 'fa-') !== 0) {
-            return $last;
-        }
-        return 'exclamation';
     }
 }
