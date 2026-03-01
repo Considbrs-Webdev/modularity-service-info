@@ -1,4 +1,4 @@
-# Copyright (C) 2025 Consid Borås AB
+# Copyright (C) 2026 Consid Borås AB
 # This file is distributed under the MIT.
 msgid ""
 msgstr ""
@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-12-30T14:53:51+00:00\n"
+"POT-Creation-Date: 2026-03-01T15:16:23+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: modularity-service-info\n"
@@ -64,12 +64,48 @@ msgstr ""
 msgid "The page where you present service information"
 msgstr ""
 
-#: source/php/AcfFields/php/general-settings.php:59
+#: source/php/AcfFields/php/general-settings.php:69
 msgid "LiteSpeed ESI cache support"
 msgstr ""
 
-#: source/php/AcfFields/php/general-settings.php:63
+#: source/php/AcfFields/php/general-settings.php:73
 msgid "Try to add support for updating the badge even though the page is cached with LiteSpeed. This will use LiteSpeed ESI to properly update only the badge part of the page."
+msgstr ""
+
+#: source/php/AcfFields/php/general-settings.php:90
+msgid "Schedule unpublish task"
+msgstr ""
+
+#: source/php/AcfFields/php/general-settings.php:94
+msgid "This schedule a cron job that runs via WP Cron and unpublishes old service information. It can also be triggered by WP CLI using the cron commands. If no job is scheduled you will have to delete the information manually or use the WP CLI command \"service-info unpublish\" to unpublish old information."
+msgstr ""
+
+#: source/php/AcfFields/php/general-settings.php:103
+#: source/php/AcfFields/php/general-settings.php:133
+msgid "No"
+msgstr ""
+
+#: source/php/AcfFields/php/general-settings.php:104
+#: source/php/AcfFields/php/general-settings.php:134
+msgid "Hourly"
+msgstr ""
+
+#: source/php/AcfFields/php/general-settings.php:105
+#: source/php/AcfFields/php/general-settings.php:135
+msgid "Daily"
+msgstr ""
+
+#: source/php/AcfFields/php/general-settings.php:107
+#: source/php/AcfFields/php/general-settings.php:137
+msgid "-"
+msgstr ""
+
+#: source/php/AcfFields/php/general-settings.php:120
+msgid "Schedule import of external information sources"
+msgstr ""
+
+#: source/php/AcfFields/php/general-settings.php:124
+msgid "A cron job can be scheduled to import information from external sources. This will be run by WP Cron or by manually running the event \"modularity_service_info_import\". If not scheduled, you can use the WP CLI command \"service-info import\" to import external sources via for instance crontab."
 msgstr ""
 
 #: source/php/AcfFields/php/module-settings.php:8
@@ -129,18 +165,23 @@ msgid "Unpublish automatically?"
 msgstr ""
 
 #: source/php/AcfFields/php/post-data.php:56
+#: source/php/AcfFields/php/post-data.php:84
 msgid "Will automatically unpublish the information when end date has past"
 msgstr ""
 
 #: source/php/AcfFields/php/post-data.php:80
+msgid "Unpublish date"
+msgstr ""
+
+#: source/php/AcfFields/php/post-data.php:108
 msgid "On unpublish"
 msgstr ""
 
-#: source/php/AcfFields/php/post-data.php:101
+#: source/php/AcfFields/php/post-data.php:129
 msgid "Set post to draft"
 msgstr ""
 
-#: source/php/AcfFields/php/post-data.php:102
+#: source/php/AcfFields/php/post-data.php:130
 msgid "Delete post"
 msgstr ""
 
@@ -152,216 +193,216 @@ msgstr ""
 msgid "Icon"
 msgstr ""
 
-#: source/php/Admin/ServiceInfoMenu.php:147
-#: source/php/Admin/ServiceInfoMenu.php:499
+#: source/php/Admin/ServiceInfoMenu.php:148
+#: source/php/Admin/ServiceInfoMenu.php:500
 msgid "%d active service information"
 msgid_plural "%d active service informations"
 msgstr[0] ""
 msgstr[1] ""
 
-#: source/php/Admin/ServiceInfoMenu.php:177
 #: source/php/Admin/ServiceInfoMenu.php:178
-#: source/php/Admin/ServiceInfoMenu.php:209
-#: source/php/Admin/ServiceInfoMenu.php:211
-#: source/php/Admin/ServiceInfoMenu.php:234
-#: source/php/Admin/ServiceInfoMenu.php:258
-#: source/php/Admin/ServiceInfoMenu.php:377
+#: source/php/Admin/ServiceInfoMenu.php:179
+#: source/php/Admin/ServiceInfoMenu.php:210
+#: source/php/Admin/ServiceInfoMenu.php:212
+#: source/php/Admin/ServiceInfoMenu.php:235
+#: source/php/Admin/ServiceInfoMenu.php:259
+#: source/php/Admin/ServiceInfoMenu.php:378
 #: source/php/Admin/Settings.php:34
-#: source/php/Module/ServiceInfo.php:21
-#: source/php/Module/ServiceInfo.php:22
-#: source/php/PostType/ServiceInformation.php:31
-#: source/php/PostType/ServiceInformation.php:32
-#: source/php/PostType/ServiceInformation.php:33
-#: source/php/PostType/ServiceInformation.php:34
+#: source/php/Module/ServiceInfo.php:23
+#: source/php/Module/ServiceInfo.php:24
+#: source/php/PostType/ServiceInformation.php:39
+#: source/php/PostType/ServiceInformation.php:40
+#: source/php/PostType/ServiceInformation.php:41
+#: source/php/PostType/ServiceInformation.php:42
 msgid "Service Information"
 msgstr ""
 
-#: source/php/Admin/ServiceInfoMenu.php:254
+#: source/php/Admin/ServiceInfoMenu.php:255
 msgid "No service information page set."
 msgstr ""
 
-#: source/php/Admin/ServiceInfoMenu.php:277
+#: source/php/Admin/ServiceInfoMenu.php:278
 msgid "Add to Menu"
 msgstr ""
 
-#: source/php/Module/ServiceInfo.php:23
+#: source/php/Module/ServiceInfo.php:25
 msgid "A service information module."
 msgstr ""
 
-#: source/php/Module/ServiceInfo.php:58
+#: source/php/Module/ServiceInfo.php:60
 msgid "No service information available at the moment."
 msgstr ""
 
-#: source/php/Module/ServiceInfo.php:59
+#: source/php/Module/ServiceInfo.php:61
 msgid "View all service information"
 msgstr ""
 
-#: source/php/Module/ServiceInfo.php:298
+#: source/php/Module/ServiceInfo.php:237
 msgid "Uncategorized"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:35
+#: source/php/PostType/ServiceInformation.php:43
 msgid "Add New"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:36
+#: source/php/PostType/ServiceInformation.php:44
 msgid "Add New Service Information"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:37
+#: source/php/PostType/ServiceInformation.php:45
 msgid "New Service Information"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:38
+#: source/php/PostType/ServiceInformation.php:46
 msgid "Edit Service Information"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:39
+#: source/php/PostType/ServiceInformation.php:47
 msgid "View Service Information"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:40
+#: source/php/PostType/ServiceInformation.php:48
 msgid "All Service Information"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:41
+#: source/php/PostType/ServiceInformation.php:49
 msgid "Search Service Information"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:42
+#: source/php/PostType/ServiceInformation.php:50
 msgid "Parent Service Information:"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:43
+#: source/php/PostType/ServiceInformation.php:51
 msgid "No service information found."
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:44
+#: source/php/PostType/ServiceInformation.php:52
 msgid "No service information found in Trash."
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:45
+#: source/php/PostType/ServiceInformation.php:53
 msgid "Featured Image"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:46
+#: source/php/PostType/ServiceInformation.php:54
 msgid "Set featured image"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:47
+#: source/php/PostType/ServiceInformation.php:55
 msgid "Remove featured image"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:48
+#: source/php/PostType/ServiceInformation.php:56
 msgid "Use as featured image"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:49
+#: source/php/PostType/ServiceInformation.php:57
 msgid "Service Information Archives"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:50
+#: source/php/PostType/ServiceInformation.php:58
 msgid "Insert into service information"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:51
+#: source/php/PostType/ServiceInformation.php:59
 msgid "Uploaded to this service information"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:52
+#: source/php/PostType/ServiceInformation.php:60
 msgid "Filter service information list"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:53
+#: source/php/PostType/ServiceInformation.php:61
 msgid "Service information list navigation"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:54
+#: source/php/PostType/ServiceInformation.php:62
 msgid "Service information list"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:59
+#: source/php/PostType/ServiceInformation.php:67
 msgid "Service information for the site"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:90
-#: source/php/PostType/ServiceInformation.php:92
+#: source/php/PostType/ServiceInformation.php:98
+#: source/php/PostType/ServiceInformation.php:100
 msgid "Service Categories"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:91
+#: source/php/PostType/ServiceInformation.php:99
 msgid "Service Category"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:93
+#: source/php/PostType/ServiceInformation.php:101
 msgid "All Service Categories"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:94
+#: source/php/PostType/ServiceInformation.php:102
 msgid "Parent Service Category"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:95
+#: source/php/PostType/ServiceInformation.php:103
 msgid "Parent Service Category:"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:96
+#: source/php/PostType/ServiceInformation.php:104
 msgid "New Service Category Name"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:97
+#: source/php/PostType/ServiceInformation.php:105
 msgid "Add New Service Category"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:98
+#: source/php/PostType/ServiceInformation.php:106
 msgid "Edit Service Category"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:99
+#: source/php/PostType/ServiceInformation.php:107
 msgid "Update Service Category"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:100
+#: source/php/PostType/ServiceInformation.php:108
 msgid "View Service Category"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:101
+#: source/php/PostType/ServiceInformation.php:109
 msgid "Separate service categories with commas"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:102
+#: source/php/PostType/ServiceInformation.php:110
 msgid "Add or remove service categories"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:103
+#: source/php/PostType/ServiceInformation.php:111
 msgid "Choose from the most used"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:104
+#: source/php/PostType/ServiceInformation.php:112
 msgid "Popular Service Categories"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:105
+#: source/php/PostType/ServiceInformation.php:113
 msgid "Search Service Categories"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:106
+#: source/php/PostType/ServiceInformation.php:114
 msgid "Not Found"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:107
+#: source/php/PostType/ServiceInformation.php:115
 msgid "No service categories"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:108
+#: source/php/PostType/ServiceInformation.php:116
 msgid "Service categories list"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:109
+#: source/php/PostType/ServiceInformation.php:117
 msgid "Service categories list navigation"
 msgstr ""
 
-#: source/php/PostType/ServiceInformation.php:114
+#: source/php/PostType/ServiceInformation.php:122
 msgid "Categories for service information"
 msgstr ""
 

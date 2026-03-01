@@ -71,6 +71,34 @@
             "ui": 1
         },
         {
+            "key": "field_69a4534e7b094",
+            "label": "Unpublish date",
+            "name": "unpublish_date",
+            "aria-label": "",
+            "type": "date_time_picker",
+            "instructions": "Will automatically unpublish the information when end date has past",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_694a9208d69a7",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "d\/m\/Y g:i a",
+            "return_format": "d\/m\/Y g:i a",
+            "first_day": 1,
+            "default_to_current_date": 0,
+            "allow_in_bindings": 0
+        },
+        {
             "key": "field_69525808c1970",
             "label": "On unpublish",
             "name": "on_unpublish",
@@ -138,12 +166,6 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "display_title": "",
-    "acfe_autosync": [
-        "json"
-    ],
-    "acfe_form": 0,
-    "acfe_meta": "",
-    "acfe_note": ""
+    "display_title": ""
 }]
 

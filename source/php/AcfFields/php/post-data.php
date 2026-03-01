@@ -1,7 +1,9 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_694a913636a90',
     'title' => __('Service information', 'modularity-service-info'),
     'fields' => array(
@@ -74,6 +76,34 @@
             'ui' => 1,
         ),
         3 => array(
+            'key' => 'field_69a4534e7b094',
+            'label' => __('Unpublish date', 'modularity-service-info'),
+            'name' => 'unpublish_date',
+            'aria-label' => '',
+            'type' => 'date_time_picker',
+            'instructions' => __('Will automatically unpublish the information when end date has past', 'modularity-service-info'),
+            'required' => 1,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_694a9208d69a7',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'display_format' => 'd/m/Y g:i a',
+            'return_format' => 'd/m/Y g:i a',
+            'first_day' => 1,
+            'default_to_current_date' => 0,
+            'allow_in_bindings' => 0,
+        ),
+        4 => array(
             'key' => 'field_69525808c1970',
             'label' => __('On unpublish', 'modularity-service-info'),
             'name' => 'on_unpublish',
@@ -142,11 +172,6 @@
     'description' => '',
     'show_in_rest' => 0,
     'display_title' => '',
-    'acfe_autosync' => array(
-        0 => 'json',
-    ),
-    'acfe_form' => 0,
-    'acfe_meta' => '',
-    'acfe_note' => '',
 ));
-}
+
+}

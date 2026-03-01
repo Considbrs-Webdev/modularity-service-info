@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Modularity Service Information 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/modularity-"
 "service-info\n"
-"POT-Creation-Date: 2025-12-30T14:53:51+00:00\n"
-"PO-Revision-Date: 2025-12-30 15:59+0100\n"
+"POT-Creation-Date: 2026-03-01T15:16:23+00:00\n"
+"PO-Revision-Date: 2026-03-01 16:17+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -71,11 +71,11 @@ msgstr "Sida för driftinformation"
 msgid "The page where you present service information"
 msgstr "Sidan där du presenterar driftinformation"
 
-#: source/php/AcfFields/php/general-settings.php:59
+#: source/php/AcfFields/php/general-settings.php:69
 msgid "LiteSpeed ESI cache support"
 msgstr "Stöd för LiteSpeed ESI-cache"
 
-#: source/php/AcfFields/php/general-settings.php:63
+#: source/php/AcfFields/php/general-settings.php:73
 msgid ""
 "Try to add support for updating the badge even though the page is cached "
 "with LiteSpeed. This will use LiteSpeed ESI to properly update only the "
@@ -84,6 +84,61 @@ msgstr ""
 "Försöker lägga till stöd för att uppdatera antal ärenden-märket även när "
 "sidan är cachad av LiteSpeed. Detta använder LiteSpeed ESI för att endast "
 "uppdatera märkets del av sidan."
+
+#: source/php/AcfFields/php/general-settings.php:90
+msgid "Schedule unpublish task"
+msgstr "Schemalägg avpubliceringsjobb"
+
+#: source/php/AcfFields/php/general-settings.php:94
+msgid ""
+"This schedule a cron job that runs via WP Cron and unpublishes old service "
+"information. It can also be triggered by WP CLI using the cron commands. If "
+"no job is scheduled you will have to delete the information manually or use "
+"the WP CLI command \"service-info unpublish\" to unpublish old information."
+msgstr ""
+"Detta schemalägger ett cron-jobb som körs via WP-Cron och avpublicerar "
+"gammal serviceinformation. Det kan även triggas via WP-CLI med cron-"
+"kommandon. Om inget jobb är schemalagt behöver du radera informationen "
+"manuellt eller använda WP-CLI-kommandot “service-info unpublish” för att "
+"avpublicera gammal information."
+
+#: source/php/AcfFields/php/general-settings.php:103
+#: source/php/AcfFields/php/general-settings.php:133
+msgid "No"
+msgstr "Nej"
+
+#: source/php/AcfFields/php/general-settings.php:104
+#: source/php/AcfFields/php/general-settings.php:134
+msgid "Hourly"
+msgstr "Varje timma"
+
+#: source/php/AcfFields/php/general-settings.php:105
+#: source/php/AcfFields/php/general-settings.php:135
+msgid "Daily"
+msgstr "Varje dag"
+
+#: source/php/AcfFields/php/general-settings.php:107
+#: source/php/AcfFields/php/general-settings.php:137
+msgid "-"
+msgstr ""
+
+#: source/php/AcfFields/php/general-settings.php:120
+msgid "Schedule import of external information sources"
+msgstr "Schemalägg import av externa informationskällor"
+
+#: source/php/AcfFields/php/general-settings.php:124
+msgid ""
+"A cron job can be scheduled to import information from external sources. "
+"This will be run by WP Cron or by manually running the event "
+"\"modularity_service_info_import\". If not scheduled, you can use the WP CLI "
+"command \"service-info import\" to import external sources via for instance "
+"crontab."
+msgstr ""
+"Ett cron-jobb kan schemaläggas för att importera information från externa "
+"källor. Detta körs via WP-Cron eller genom att manuellt trigga händelsen "
+"“modularity_service_info_import”. Om det inte är schemalagt kan du använda "
+"WP-CLI-kommandot “service-info import” för att importera externa källor, "
+"till exempel via crontab."
 
 #: source/php/AcfFields/php/module-settings.php:8
 msgid "Service Information Module"
@@ -146,19 +201,24 @@ msgid "Unpublish automatically?"
 msgstr "Avpublicera automatiskt?"
 
 #: source/php/AcfFields/php/post-data.php:56
+#: source/php/AcfFields/php/post-data.php:84
 msgid "Will automatically unpublish the information when end date has past"
 msgstr ""
 "Kommer automatiskt att avpublicera informationen när slutdatumet har passerat"
 
 #: source/php/AcfFields/php/post-data.php:80
+msgid "Unpublish date"
+msgstr "Avpubliceringsdatum"
+
+#: source/php/AcfFields/php/post-data.php:108
 msgid "On unpublish"
 msgstr "Vid avpublicering"
 
-#: source/php/AcfFields/php/post-data.php:101
+#: source/php/AcfFields/php/post-data.php:129
 msgid "Set post to draft"
 msgstr "Sätt inlägg till utkast"
 
-#: source/php/AcfFields/php/post-data.php:102
+#: source/php/AcfFields/php/post-data.php:130
 msgid "Delete post"
 msgstr "Ta bort inlägg"
 
@@ -170,214 +230,214 @@ msgstr "Kategori för driftinformation"
 msgid "Icon"
 msgstr "Ikon"
 
-#: source/php/Admin/ServiceInfoMenu.php:147
-#: source/php/Admin/ServiceInfoMenu.php:499
+#: source/php/Admin/ServiceInfoMenu.php:148
+#: source/php/Admin/ServiceInfoMenu.php:500
 msgid "%d active service information"
 msgid_plural "%d active service informations"
 msgstr[0] "%d aktivt driftärende"
 msgstr[1] "%d aktiva driftärenden"
 
-#: source/php/Admin/ServiceInfoMenu.php:177
 #: source/php/Admin/ServiceInfoMenu.php:178
-#: source/php/Admin/ServiceInfoMenu.php:209
-#: source/php/Admin/ServiceInfoMenu.php:211
-#: source/php/Admin/ServiceInfoMenu.php:234
-#: source/php/Admin/ServiceInfoMenu.php:258
-#: source/php/Admin/ServiceInfoMenu.php:377 source/php/Admin/Settings.php:34
-#: source/php/Module/ServiceInfo.php:21 source/php/Module/ServiceInfo.php:22
-#: source/php/PostType/ServiceInformation.php:31
-#: source/php/PostType/ServiceInformation.php:32
-#: source/php/PostType/ServiceInformation.php:33
-#: source/php/PostType/ServiceInformation.php:34
+#: source/php/Admin/ServiceInfoMenu.php:179
+#: source/php/Admin/ServiceInfoMenu.php:210
+#: source/php/Admin/ServiceInfoMenu.php:212
+#: source/php/Admin/ServiceInfoMenu.php:235
+#: source/php/Admin/ServiceInfoMenu.php:259
+#: source/php/Admin/ServiceInfoMenu.php:378 source/php/Admin/Settings.php:34
+#: source/php/Module/ServiceInfo.php:23 source/php/Module/ServiceInfo.php:24
+#: source/php/PostType/ServiceInformation.php:39
+#: source/php/PostType/ServiceInformation.php:40
+#: source/php/PostType/ServiceInformation.php:41
+#: source/php/PostType/ServiceInformation.php:42
 msgid "Service Information"
 msgstr "Driftinformation"
 
-#: source/php/Admin/ServiceInfoMenu.php:254
+#: source/php/Admin/ServiceInfoMenu.php:255
 msgid "No service information page set."
 msgstr "Ingen sida för driftinformation är inställd."
 
-#: source/php/Admin/ServiceInfoMenu.php:277
+#: source/php/Admin/ServiceInfoMenu.php:278
 msgid "Add to Menu"
 msgstr "Lägg till i meny"
 
-#: source/php/Module/ServiceInfo.php:23
+#: source/php/Module/ServiceInfo.php:25
 msgid "A service information module."
 msgstr "En modul för driftinformation."
 
-#: source/php/Module/ServiceInfo.php:58
+#: source/php/Module/ServiceInfo.php:60
 msgid "No service information available at the moment."
 msgstr "Ingen driftinformation tillgänglig för tillfället."
 
-#: source/php/Module/ServiceInfo.php:59
+#: source/php/Module/ServiceInfo.php:61
 msgid "View all service information"
 msgstr "Visa all driftinformation"
 
-#: source/php/Module/ServiceInfo.php:298
+#: source/php/Module/ServiceInfo.php:237
 msgid "Uncategorized"
 msgstr "Okategoriserad"
 
-#: source/php/PostType/ServiceInformation.php:35
+#: source/php/PostType/ServiceInformation.php:43
 msgid "Add New"
 msgstr "Lägg till ny"
 
-#: source/php/PostType/ServiceInformation.php:36
+#: source/php/PostType/ServiceInformation.php:44
 msgid "Add New Service Information"
 msgstr "Lägg till ny driftinformation"
 
-#: source/php/PostType/ServiceInformation.php:37
+#: source/php/PostType/ServiceInformation.php:45
 msgid "New Service Information"
 msgstr "Ny driftinformation"
 
-#: source/php/PostType/ServiceInformation.php:38
+#: source/php/PostType/ServiceInformation.php:46
 msgid "Edit Service Information"
 msgstr "Redigera driftinformation"
 
-#: source/php/PostType/ServiceInformation.php:39
+#: source/php/PostType/ServiceInformation.php:47
 msgid "View Service Information"
 msgstr "Visa driftinformation"
 
-#: source/php/PostType/ServiceInformation.php:40
+#: source/php/PostType/ServiceInformation.php:48
 msgid "All Service Information"
 msgstr "All driftinformation"
 
-#: source/php/PostType/ServiceInformation.php:41
+#: source/php/PostType/ServiceInformation.php:49
 msgid "Search Service Information"
 msgstr "Sök driftinformation"
 
-#: source/php/PostType/ServiceInformation.php:42
+#: source/php/PostType/ServiceInformation.php:50
 msgid "Parent Service Information:"
 msgstr "Förälder driftinformation:"
 
-#: source/php/PostType/ServiceInformation.php:43
+#: source/php/PostType/ServiceInformation.php:51
 msgid "No service information found."
 msgstr "Ingen driftinformation hittades."
 
-#: source/php/PostType/ServiceInformation.php:44
+#: source/php/PostType/ServiceInformation.php:52
 msgid "No service information found in Trash."
 msgstr "Ingen driftinformation hittades i papperskorgen."
 
-#: source/php/PostType/ServiceInformation.php:45
+#: source/php/PostType/ServiceInformation.php:53
 msgid "Featured Image"
 msgstr "Utvald bild"
 
-#: source/php/PostType/ServiceInformation.php:46
+#: source/php/PostType/ServiceInformation.php:54
 msgid "Set featured image"
 msgstr "Välj utvald bild"
 
-#: source/php/PostType/ServiceInformation.php:47
+#: source/php/PostType/ServiceInformation.php:55
 msgid "Remove featured image"
 msgstr "Ta bort utvald bild"
 
-#: source/php/PostType/ServiceInformation.php:48
+#: source/php/PostType/ServiceInformation.php:56
 msgid "Use as featured image"
 msgstr "Använd som utvald bild"
 
-#: source/php/PostType/ServiceInformation.php:49
+#: source/php/PostType/ServiceInformation.php:57
 msgid "Service Information Archives"
 msgstr "Arkiv för driftinformation"
 
-#: source/php/PostType/ServiceInformation.php:50
+#: source/php/PostType/ServiceInformation.php:58
 msgid "Insert into service information"
 msgstr "Infoga i driftinformation"
 
-#: source/php/PostType/ServiceInformation.php:51
+#: source/php/PostType/ServiceInformation.php:59
 msgid "Uploaded to this service information"
 msgstr "Uppladdat till denna driftinformation"
 
-#: source/php/PostType/ServiceInformation.php:52
+#: source/php/PostType/ServiceInformation.php:60
 msgid "Filter service information list"
 msgstr "Filtrera lista över driftinformation"
 
-#: source/php/PostType/ServiceInformation.php:53
+#: source/php/PostType/ServiceInformation.php:61
 msgid "Service information list navigation"
 msgstr "Navigering för lista över driftinformation"
 
-#: source/php/PostType/ServiceInformation.php:54
+#: source/php/PostType/ServiceInformation.php:62
 msgid "Service information list"
 msgstr "Lista över driftinformation"
 
-#: source/php/PostType/ServiceInformation.php:59
+#: source/php/PostType/ServiceInformation.php:67
 msgid "Service information for the site"
 msgstr "Driftinformation för webbplatsen"
 
-#: source/php/PostType/ServiceInformation.php:90
-#: source/php/PostType/ServiceInformation.php:92
+#: source/php/PostType/ServiceInformation.php:98
+#: source/php/PostType/ServiceInformation.php:100
 msgid "Service Categories"
 msgstr "Driftkategorier"
 
-#: source/php/PostType/ServiceInformation.php:91
+#: source/php/PostType/ServiceInformation.php:99
 msgid "Service Category"
 msgstr "Driftkategori"
 
-#: source/php/PostType/ServiceInformation.php:93
+#: source/php/PostType/ServiceInformation.php:101
 msgid "All Service Categories"
 msgstr "Alla driftkategorier"
 
-#: source/php/PostType/ServiceInformation.php:94
+#: source/php/PostType/ServiceInformation.php:102
 msgid "Parent Service Category"
 msgstr "Förälder driftkategori"
 
-#: source/php/PostType/ServiceInformation.php:95
+#: source/php/PostType/ServiceInformation.php:103
 msgid "Parent Service Category:"
 msgstr "Förälder driftkategori:"
 
-#: source/php/PostType/ServiceInformation.php:96
+#: source/php/PostType/ServiceInformation.php:104
 msgid "New Service Category Name"
 msgstr "Namn på ny driftkategori"
 
-#: source/php/PostType/ServiceInformation.php:97
+#: source/php/PostType/ServiceInformation.php:105
 msgid "Add New Service Category"
 msgstr "Lägg till ny driftkategori"
 
-#: source/php/PostType/ServiceInformation.php:98
+#: source/php/PostType/ServiceInformation.php:106
 msgid "Edit Service Category"
 msgstr "Redigera driftkategori"
 
-#: source/php/PostType/ServiceInformation.php:99
+#: source/php/PostType/ServiceInformation.php:107
 msgid "Update Service Category"
 msgstr "Uppdatera driftkategori"
 
-#: source/php/PostType/ServiceInformation.php:100
+#: source/php/PostType/ServiceInformation.php:108
 msgid "View Service Category"
 msgstr "Visa driftkategori"
 
-#: source/php/PostType/ServiceInformation.php:101
+#: source/php/PostType/ServiceInformation.php:109
 msgid "Separate service categories with commas"
 msgstr "Separera driftkategorier med kommatecken"
 
-#: source/php/PostType/ServiceInformation.php:102
+#: source/php/PostType/ServiceInformation.php:110
 msgid "Add or remove service categories"
 msgstr "Lägg till eller ta bort driftkategorier"
 
-#: source/php/PostType/ServiceInformation.php:103
+#: source/php/PostType/ServiceInformation.php:111
 msgid "Choose from the most used"
 msgstr "Välj från de mest använda"
 
-#: source/php/PostType/ServiceInformation.php:104
+#: source/php/PostType/ServiceInformation.php:112
 msgid "Popular Service Categories"
 msgstr "Populära driftkategorier"
 
-#: source/php/PostType/ServiceInformation.php:105
+#: source/php/PostType/ServiceInformation.php:113
 msgid "Search Service Categories"
 msgstr "Sök driftkategorier"
 
-#: source/php/PostType/ServiceInformation.php:106
+#: source/php/PostType/ServiceInformation.php:114
 msgid "Not Found"
 msgstr "Hittades inte"
 
-#: source/php/PostType/ServiceInformation.php:107
+#: source/php/PostType/ServiceInformation.php:115
 msgid "No service categories"
 msgstr "Inga driftkategorier"
 
-#: source/php/PostType/ServiceInformation.php:108
+#: source/php/PostType/ServiceInformation.php:116
 msgid "Service categories list"
 msgstr "Lista över driftkategorier"
 
-#: source/php/PostType/ServiceInformation.php:109
+#: source/php/PostType/ServiceInformation.php:117
 msgid "Service categories list navigation"
 msgstr "Navigering för lista över driftkategorier"
 
-#: source/php/PostType/ServiceInformation.php:114
+#: source/php/PostType/ServiceInformation.php:122
 msgid "Categories for service information"
 msgstr "Kategorier för driftinformation"
 

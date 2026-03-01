@@ -28,6 +28,7 @@ class ImportCron
 
         add_action('init', [$this, 'init']);
         add_action(self::CRON_HOOK, [$this, 'handleCron']);
+        add_action('acf/save_post', [$this, 'handleSettingsSave'], 20);
     }
 
     /**
@@ -42,10 +43,41 @@ class ImportCron
         if (defined('WP_CLI') && constant('WP_CLI') === true) {
             \WP_CLI::add_command('service-info import', [$this, 'cliCommand']);
         }
+    }
 
-        // Schedule cron if not already scheduled
-        if (!wp_next_scheduled(self::CRON_HOOK)) {
-            wp_schedule_event(time(), 'hourly', self::CRON_HOOK);
+    /**
+     * Fires after ACF options are saved. Reschedules the import cron job
+     * according to the 'schedule_import_external_info' setting.
+     *
+     * @param mixed $postId
+     * @return void
+     */
+    public function handleSettingsSave($postId): void
+    {
+        if ($postId !== 'service-information-settings') {
+            return;
+        }
+
+        $setting = get_field('schedule_import_external_info', 'service-information-settings') ?: '-';
+        $this->applySchedule((string) $setting);
+    }
+
+    /**
+     * Clear any existing schedule and set a new one based on $setting.
+     * Passing '-' (or any unrecognised value) will only clear the schedule.
+     *
+     * @param string $setting  'hourly', 'daily', or '-'
+     * @return void
+     */
+    public function applySchedule(string $setting): void
+    {
+        $timestamp = wp_next_scheduled(self::CRON_HOOK);
+        if ($timestamp) {
+            wp_unschedule_event($timestamp, self::CRON_HOOK);
+        }
+
+        if (in_array($setting, ['hourly', 'daily'], true)) {
+            wp_schedule_event(time(), $setting, self::CRON_HOOK);
         }
     }
 

@@ -4,14 +4,49 @@ namespace ModularityServiceInfo\Cron;
 
 class UnpublishExpiredPosts
 {
+    private const CRON_HOOK = 'modularity_service_info_unpublish_expired';
+
     public function __construct()
     {
         add_action('init', array($this, 'registerCommand'));
-        add_action('modularity_service_info_unpublish_expired', array($this, 'handleCron'));
-        
-        // Schedule the event if not already scheduled
-        if (!wp_next_scheduled('modularity_service_info_unpublish_expired')) {
-            wp_schedule_event(time(), 'hourly', 'modularity_service_info_unpublish_expired');
+        add_action(self::CRON_HOOK, array($this, 'handleCron'));
+        add_action('acf/save_post', array($this, 'handleSettingsSave'), 20);
+    }
+
+    /**
+     * Fires after ACF options are saved. Reschedules the cron job
+     * according to the 'schedule_unpublish_task' setting.
+     *
+     * @param mixed $postId
+     * @return void
+     */
+    public function handleSettingsSave($postId): void
+    {
+        if ($postId !== 'service-information-settings') {
+            return;
+        }
+
+        $setting = get_field('schedule_unpublish_task', 'service-information-settings') ?: '-';
+        $this->applySchedule((string) $setting);
+    }
+
+    /**
+     * Clear any existing schedule and set a new one based on $setting.
+     * Passing '-' (or any unrecognised value) will only clear the schedule.
+     *
+     * @param string $setting  'hourly', 'daily', or '-'
+     * @return void
+     */
+    public function applySchedule(string $setting): void
+    {
+        // Remove existing scheduled event regardless of recurrence
+        $timestamp = wp_next_scheduled(self::CRON_HOOK);
+        if ($timestamp) {
+            wp_unschedule_event($timestamp, self::CRON_HOOK);
+        }
+
+        if (in_array($setting, ['hourly', 'daily'], true)) {
+            wp_schedule_event(time(), $setting, self::CRON_HOOK);
         }
     }
 

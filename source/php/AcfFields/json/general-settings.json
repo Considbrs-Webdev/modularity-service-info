@@ -78,6 +78,66 @@
             "ui_on_text": "",
             "ui_off_text": "",
             "ui": 1
+        },
+        {
+            "key": "field_69a4556aa8c49",
+            "label": "Schedule unpublish task",
+            "name": "schedule_unpublish_task",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "This schedule a cron job that runs via WP Cron and unpublishes old service information. It can also be triggered by WP CLI using the cron commands. If no job is scheduled you will have to delete the information manually or use the WP CLI command \"service-info unpublish\" to unpublish old information.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "-": "No",
+                "hourly": "Hourly",
+                "daily": "Daily"
+            },
+            "default_value": "-",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_69a456f36ccd5",
+            "label": "Schedule import of external information sources",
+            "name": "schedule_import_external_info",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "A cron job can be scheduled to import information from external sources. This will be run by WP Cron or by manually running the event \"modularity_service_info_import\". If not scheduled, you can use the WP CLI command \"service-info import\" to import external sources via for instance crontab.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "-": "No",
+                "hourly": "Hourly",
+                "daily": "Daily"
+            },
+            "default_value": "-",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
         }
     ],
     "location": [
@@ -98,12 +158,6 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "display_title": "",
-    "acfe_autosync": [
-        "json"
-    ],
-    "acfe_form": 0,
-    "acfe_meta": "",
-    "acfe_note": ""
+    "display_title": ""
 }]
 
