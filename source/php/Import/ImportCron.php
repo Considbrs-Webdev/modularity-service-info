@@ -215,6 +215,14 @@ class ImportCron
             'post_status'  => 'publish',
         ];
 
+        if ($item->getPublishDate()) {
+            $publishDate    = $item->getPublishDate();
+            $nowLocal       = new \DateTimeImmutable('now', wp_timezone());
+            $postData['post_date']     = $publishDate->format('Y-m-d H:i:s');
+            $postData['post_date_gmt'] = $publishDate->setTimezone(new \DateTimeZone('UTC'))->format('Y-m-d H:i:s');
+            $postData['post_status']   = $publishDate > $nowLocal ? 'future' : 'publish';
+        }
+
         if ($existingPostId) {
             $postData['ID'] = $existingPostId;
             $result = wp_update_post($postData, true);
@@ -273,12 +281,16 @@ class ImportCron
         update_field('start_date', $startDate, $postId);
 
         if ($item->getEndDate()) {
-            $endDate = $item->getEndDate()->format('Y-m-d H:i:s');
-            update_field('end_date', $endDate, $postId);
-            update_field('unpublish_automatically', true, $postId);
-            update_field('on_unpublish', 'trash', $postId);
+            update_field('end_date', $item->getEndDate()->format('Y-m-d H:i:s'), $postId);
         } else {
             update_field('end_date', '', $postId);
+        }
+
+        if ($item->getUnpublishDate()) {
+            update_field('unpublish_automatically', true, $postId);
+            update_field('unpublish_date', $item->getUnpublishDate()->setTimezone(wp_timezone())->format('Y-m-d H:i:s'), $postId);
+            update_field('on_unpublish', $item->getOnUnpublish(), $postId);
+        } else {
             update_field('unpublish_automatically', false, $postId);
         }
     }
