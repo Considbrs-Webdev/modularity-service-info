@@ -145,6 +145,7 @@ class ServiceInfoMenu
         $badge = sprintf(
             '<span class="service-info-badge" aria-label="%s">%d</span>',
             esc_attr(sprintf(
+                /* translators: %d: number of active service information posts. */
                 _n('%d active service information', '%d active service informations', $count, 'modularity-service-info'),
                 $count
             )),
@@ -497,6 +498,7 @@ class ServiceInfoMenu
                     $badge = sprintf(
                         '<span class="service-info-badge" aria-label="%s">%d</span>',
                         esc_attr(sprintf(
+                            /* translators: %d: number of active service information posts. */
                             _n('%d active service information', '%d active service informations', $count, 'modularity-service-info'),
                             $count
                         )),

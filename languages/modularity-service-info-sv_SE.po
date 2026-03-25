@@ -1,18 +1,15 @@
-# Copyright (C) 2025 Consid Borås AB
-# This file is distributed under the MIT.
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity Service Information 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/modularity-"
-"service-info\n"
-"POT-Creation-Date: 2026-03-01T15:16:23+00:00\n"
-"PO-Revision-Date: 2026-03-01 16:17+0100\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/modularity-service-info\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-03-01T15:16:23+00:00\n"
+"PO-Revision-Date: 2026-03-01 16:17+0100\n"
+"Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.8\n"
 "X-Domain: modularity-service-info\n"
@@ -52,12 +49,8 @@ msgid "Slug"
 msgstr "Slug"
 
 #: source/php/AcfFields/php/general-settings.php:16
-msgid ""
-"The slug you want for the singular posts, defaults to service-information. "
-"Don't forget to flush your permalink rules after changing."
-msgstr ""
-"Sluggen du vill ha för de enskilda inläggen, standard är service-"
-"information. Glöm inte att spara om dina permalänkar efter ändring."
+msgid "The slug you want for the singular posts, defaults to service-information. Don't forget to flush your permalink rules after changing."
+msgstr "Sluggen du vill ha för de enskilda inläggen, standard är service-information. Glöm inte att spara om dina permalänkar efter ändring."
 
 #: source/php/AcfFields/php/general-settings.php:27
 msgid "service-information"
@@ -76,31 +69,16 @@ msgid "LiteSpeed ESI cache support"
 msgstr "Stöd för LiteSpeed ESI-cache"
 
 #: source/php/AcfFields/php/general-settings.php:73
-msgid ""
-"Try to add support for updating the badge even though the page is cached "
-"with LiteSpeed. This will use LiteSpeed ESI to properly update only the "
-"badge part of the page."
-msgstr ""
-"Försöker lägga till stöd för att uppdatera antal ärenden-märket även när "
-"sidan är cachad av LiteSpeed. Detta använder LiteSpeed ESI för att endast "
-"uppdatera märkets del av sidan."
+msgid "Try to add support for updating the badge even though the page is cached with LiteSpeed. This will use LiteSpeed ESI to properly update only the badge part of the page."
+msgstr "Försöker lägga till stöd för att uppdatera antal ärenden-märket även när sidan är cachad av LiteSpeed. Detta använder LiteSpeed ESI för att endast uppdatera märkets del av sidan."
 
 #: source/php/AcfFields/php/general-settings.php:90
 msgid "Schedule unpublish task"
 msgstr "Schemalägg avpubliceringsjobb"
 
 #: source/php/AcfFields/php/general-settings.php:94
-msgid ""
-"This schedule a cron job that runs via WP Cron and unpublishes old service "
-"information. It can also be triggered by WP CLI using the cron commands. If "
-"no job is scheduled you will have to delete the information manually or use "
-"the WP CLI command \"service-info unpublish\" to unpublish old information."
-msgstr ""
-"Detta schemalägger ett cron-jobb som körs via WP-Cron och avpublicerar "
-"gammal serviceinformation. Det kan även triggas via WP-CLI med cron-"
-"kommandon. Om inget jobb är schemalagt behöver du radera informationen "
-"manuellt eller använda WP-CLI-kommandot “service-info unpublish” för att "
-"avpublicera gammal information."
+msgid "This schedule a cron job that runs via WP Cron and unpublishes old service information. It can also be triggered by WP CLI using the cron commands. If no job is scheduled you will have to delete the information manually or use the WP CLI command \"service-info unpublish\" to unpublish old information."
+msgstr "Detta schemalägger ett cron-jobb som körs via WP-Cron och avpublicerar gammal serviceinformation. Det kan även triggas via WP-CLI med cron-kommandon. Om inget jobb är schemalagt behöver du radera informationen manuellt eller använda WP-CLI-kommandot “service-info unpublish” för att avpublicera gammal information."
 
 #: source/php/AcfFields/php/general-settings.php:103
 #: source/php/AcfFields/php/general-settings.php:133
@@ -127,18 +105,8 @@ msgid "Schedule import of external information sources"
 msgstr "Schemalägg import av externa informationskällor"
 
 #: source/php/AcfFields/php/general-settings.php:124
-msgid ""
-"A cron job can be scheduled to import information from external sources. "
-"This will be run by WP Cron or by manually running the event "
-"\"modularity_service_info_import\". If not scheduled, you can use the WP CLI "
-"command \"service-info import\" to import external sources via for instance "
-"crontab."
-msgstr ""
-"Ett cron-jobb kan schemaläggas för att importera information från externa "
-"källor. Detta körs via WP-Cron eller genom att manuellt trigga händelsen "
-"“modularity_service_info_import”. Om det inte är schemalagt kan du använda "
-"WP-CLI-kommandot “service-info import” för att importera externa källor, "
-"till exempel via crontab."
+msgid "A cron job can be scheduled to import information from external sources. This will be run by WP Cron or by manually running the event \"modularity_service_info_import\". If not scheduled, you can use the WP CLI command \"service-info import\" to import external sources via for instance crontab."
+msgstr "Ett cron-jobb kan schemaläggas för att importera information från externa källor. Detta körs via WP-Cron eller genom att manuellt trigga händelsen “modularity_service_info_import”. Om det inte är schemalagt kan du använda WP-CLI-kommandot “service-info import” för att importera externa källor, till exempel via crontab."
 
 #: source/php/AcfFields/php/module-settings.php:8
 msgid "Service Information Module"
@@ -177,12 +145,8 @@ msgid "Show empty categories"
 msgstr "Visa tomma kategorier"
 
 #: source/php/AcfFields/php/module-settings.php:147
-msgid ""
-"Shows category heading even if it doesn't contain any published information "
-"at the moment"
-msgstr ""
-"Visar kategorirubrik även om den för tillfället inte innehåller någon "
-"publicerad information"
+msgid "Shows category heading even if it doesn't contain any published information at the moment"
+msgstr "Visar kategorirubrik även om den för tillfället inte innehåller någon publicerad information"
 
 #: source/php/AcfFields/php/post-data.php:8
 msgid "Service information"
@@ -203,8 +167,7 @@ msgstr "Avpublicera automatiskt?"
 #: source/php/AcfFields/php/post-data.php:56
 #: source/php/AcfFields/php/post-data.php:84
 msgid "Will automatically unpublish the information when end date has past"
-msgstr ""
-"Kommer automatiskt att avpublicera informationen när slutdatumet har passerat"
+msgstr "Kommer automatiskt att avpublicera informationen när slutdatumet har passerat"
 
 #: source/php/AcfFields/php/post-data.php:80
 msgid "Unpublish date"
@@ -232,6 +195,7 @@ msgstr "Ikon"
 
 #: source/php/Admin/ServiceInfoMenu.php:148
 #: source/php/Admin/ServiceInfoMenu.php:500
+#, php-format
 msgid "%d active service information"
 msgid_plural "%d active service informations"
 msgstr[0] "%d aktivt driftärende"
@@ -243,8 +207,10 @@ msgstr[1] "%d aktiva driftärenden"
 #: source/php/Admin/ServiceInfoMenu.php:212
 #: source/php/Admin/ServiceInfoMenu.php:235
 #: source/php/Admin/ServiceInfoMenu.php:259
-#: source/php/Admin/ServiceInfoMenu.php:378 source/php/Admin/Settings.php:34
-#: source/php/Module/ServiceInfo.php:23 source/php/Module/ServiceInfo.php:24
+#: source/php/Admin/ServiceInfoMenu.php:378
+#: source/php/Admin/Settings.php:34
+#: source/php/Module/ServiceInfo.php:23
+#: source/php/Module/ServiceInfo.php:24
 #: source/php/PostType/ServiceInformation.php:39
 #: source/php/PostType/ServiceInformation.php:40
 #: source/php/PostType/ServiceInformation.php:41
@@ -442,12 +408,8 @@ msgid "Categories for service information"
 msgstr "Kategorier för driftinformation"
 
 #: source/php/Validation/ACF_Validation.php:35
-msgid ""
-"Lowercase letters, dashes and slashes only. Cannot start or end with dash or "
-"slash."
-msgstr ""
-"Endast gemener, bindestreck och snedstreck tillåtna. Kan inte börja eller "
-"sluta med bindestreck eller snedstreck."
+msgid "Lowercase letters, dashes and slashes only. Cannot start or end with dash or slash."
+msgstr "Endast gemener, bindestreck och snedstreck tillåtna. Kan inte börja eller sluta med bindestreck eller snedstreck."
 
 #: source/php/Validation/ACF_Validation.php:66
 msgid "Invalid value."

@@ -9,9 +9,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-01T15:16:23+00:00\n"
+"POT-Creation-Date: 2026-03-25T16:43:40+01:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: modularity-service-info\n"
 
 #. Plugin Name of the plugin
@@ -193,20 +193,22 @@ msgstr ""
 msgid "Icon"
 msgstr ""
 
-#: source/php/Admin/ServiceInfoMenu.php:148
-#: source/php/Admin/ServiceInfoMenu.php:500
+#. translators: %d: number of active service information posts.
+#: source/php/Admin/ServiceInfoMenu.php:149
+#: source/php/Admin/ServiceInfoMenu.php:502
+#, php-format
 msgid "%d active service information"
 msgid_plural "%d active service informations"
 msgstr[0] ""
 msgstr[1] ""
 
-#: source/php/Admin/ServiceInfoMenu.php:178
 #: source/php/Admin/ServiceInfoMenu.php:179
-#: source/php/Admin/ServiceInfoMenu.php:210
-#: source/php/Admin/ServiceInfoMenu.php:212
-#: source/php/Admin/ServiceInfoMenu.php:235
-#: source/php/Admin/ServiceInfoMenu.php:259
-#: source/php/Admin/ServiceInfoMenu.php:378
+#: source/php/Admin/ServiceInfoMenu.php:180
+#: source/php/Admin/ServiceInfoMenu.php:211
+#: source/php/Admin/ServiceInfoMenu.php:213
+#: source/php/Admin/ServiceInfoMenu.php:236
+#: source/php/Admin/ServiceInfoMenu.php:260
+#: source/php/Admin/ServiceInfoMenu.php:379
 #: source/php/Admin/Settings.php:34
 #: source/php/Module/ServiceInfo.php:23
 #: source/php/Module/ServiceInfo.php:24
@@ -217,11 +219,11 @@ msgstr[1] ""
 msgid "Service Information"
 msgstr ""
 
-#: source/php/Admin/ServiceInfoMenu.php:255
+#: source/php/Admin/ServiceInfoMenu.php:256
 msgid "No service information page set."
 msgstr ""
 
-#: source/php/Admin/ServiceInfoMenu.php:278
+#: source/php/Admin/ServiceInfoMenu.php:279
 msgid "Add to Menu"
 msgstr ""
 
