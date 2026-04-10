@@ -161,6 +161,27 @@
             "ui_on_text": "",
             "ui_off_text": "",
             "ui": 1
+        },
+        {
+            "key": "field_6952569189e33",
+            "label": "Upcoming and active first",
+            "name": "sort_upcoming_first",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Lists current and upcoming entries first (by start date), then past entries (by end date). When off, order is by start date, newest first.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "allow_in_bindings": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
         }
     ],
     "location": [

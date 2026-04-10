@@ -165,6 +165,27 @@
             'ui_off_text' => '',
             'ui' => 1,
         ),
+        6 => array(
+            'key' => 'field_6952569189e33',
+            'label' => __('Upcoming and active first', 'modularity-service-info'),
+            'name' => 'sort_upcoming_first',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => __('Lists current and upcoming entries first (by start date), then past entries (by end date). When off, order is by start date, newest first.', 'modularity-service-info'),
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'allow_in_bindings' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'ui' => 1,
+        ),
     ),
     'location' => array(
         0 => array(

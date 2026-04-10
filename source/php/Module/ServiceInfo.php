@@ -46,9 +46,10 @@ class ServiceInfo extends \Modularity\Module
         $data['archiveMode'] = is_null($data['archiveMode']) ? false : $data['archiveMode'];
         $data['groupByCategories'] = is_null($data['groupByCategories']) ? false : $data['groupByCategories'];
         $data['showEmptyCategories'] = is_null($data['showEmptyCategories']) ? false : $data['showEmptyCategories'];
+        $data['sortUpcomingFirst'] = is_null($data['sortUpcomingFirst']) ? false : $data['sortUpcomingFirst'];
 
         $postsToShow = $data['archiveMode'] ? -1 : $data['postsToShow'];
-        $posts = $this->getPosts($postsToShow);
+        $posts = $this->getPosts($postsToShow, true, $data['sortUpcomingFirst']);
 
         if ($data['groupByCategories']) {
             $data['posts'] = $this->groupPosts($posts, $data['showEmptyCategories']);
@@ -117,7 +118,7 @@ class ServiceInfo extends \Modularity\Module
      * @param int $postsToShow Number of posts to retrieve
      * @return array
      */
-    private function getPosts(int $postsToShow, $excludeSelf = true): array
+    private function getPosts(int $postsToShow, bool $excludeSelf = true, bool $sortUpcomingFirst = false): array
     {
         $args = [
             'post_type'      => 'service_information',
@@ -138,13 +139,69 @@ class ServiceInfo extends \Modularity\Module
             return [];
         }
 
-        $posts = [];
+        $wpPosts = $query->posts;
+        if ($sortUpcomingFirst) {
+            $wpPosts = $this->sortPostsByServiceWindow($wpPosts);
+        }
 
-        foreach ($query->posts as $post) {
+        $posts = [];
+        foreach ($wpPosts as $post) {
             $posts[] = $this->formatPost($post);
         }
 
         return $posts;
+    }
+
+    /**
+     * @param \WP_Post[] $posts
+     * @return \WP_Post[]
+     */
+    private function sortPostsByServiceWindow(array $posts): array
+    {
+        $now = (int) current_time('timestamp');
+
+        usort(
+            $posts,
+            function (\WP_Post $a, \WP_Post $b) use ($now): int {
+                $aStart = $this->serviceInfoFieldTimestamp('start_date', $a->ID);
+                $aEnd = $this->serviceInfoFieldTimestamp('end_date', $a->ID);
+                $bStart = $this->serviceInfoFieldTimestamp('start_date', $b->ID);
+                $bEnd = $this->serviceInfoFieldTimestamp('end_date', $b->ID);
+
+                $aPast = $aEnd !== null && $aEnd < $now;
+                $bPast = $bEnd !== null && $bEnd < $now;
+
+                if ($aPast !== $bPast) {
+                    return $aPast ? 1 : -1;
+                }
+
+                if ($aPast) {
+                    $aKey = $aEnd ?? $aStart ?? 0;
+                    $bKey = $bEnd ?? $bStart ?? 0;
+
+                    return $bKey <=> $aKey;
+                }
+
+                $aKey = $aStart ?? PHP_INT_MAX;
+                $bKey = $bStart ?? PHP_INT_MAX;
+
+                return $aKey <=> $bKey;
+            }
+        );
+
+        return $posts;
+    }
+
+    private function serviceInfoFieldTimestamp(string $field, int $postId): ?int
+    {
+        $raw = get_field($field, $postId);
+        if ($raw === '' || $raw === null || $raw === false) {
+            return null;
+        }
+
+        $ts = strtotime((string) $raw);
+
+        return $ts !== false ? $ts : null;
     }
 
     /**
