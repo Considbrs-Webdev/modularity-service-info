@@ -3,7 +3,7 @@
   --badge-padding: 0.5em;
   --badge-margin-left: 0.5em;
   --badge-font-size: 0.75em;
-  --badge-font-weight: var(--font-weight-button, 700);
+  --badge-font-weight: var(--font-weight-button, 500);
   --badge-line-height: 1;
   --badge-color: var(--color-white, #fff);
   --badge-background-color: var(--color-danger, #d73740);
@@ -73,7 +73,10 @@
   --date-font-size: 0.875rem;
   --date-color: #666;
   --title-font-size: 1.125rem;
-  --title-font-weight: 600;
+  --title-font-weight: var(
+    --h3-font-weight,
+    var(--font-weight-heading, 600)
+  );
   --transition-style: background-color 0.2s ease;
 
   display: flex;
