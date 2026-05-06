@@ -33,10 +33,14 @@
                         @foreach ($items as $post)
                             <li class="mod-service-info__item">
                                 <a href="{{ $post->link }}" class="mod-service-info__link">
-                                    @if ($showIcons && $post->iconName)
+                                    @if ($showIcons && ($post->customIconSvg || $post->iconName))
                                         <div class="mod-service-info__icon">
-                                            @icon(['icon' => $post->iconName])
-                                            @endicon
+                                            @if ($post->customIconSvg)
+                                                {!! $post->customIconSvg !!}
+                                            @else
+                                                @icon(['icon' => $post->iconName])
+                                                @endicon
+                                            @endif
                                         </div>
                                     @endif
 

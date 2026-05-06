@@ -247,13 +247,15 @@ class ServiceInfo extends \Modularity\Module
         // Formatted HTML span for date(s)
         $formattedDate = DateFormatter::formatDateRange((string) $startDateRaw, (string) $endDateRaw);
 
-        // Create and return ServiceInfoPost object
+        $customIconSvg = apply_filters('ModularityServiceInfo/customIconSvg', null, $post->ID);
+
         return new ServiceInfoPost(
             get_the_title($post->ID),
             $formattedDate,
             $iconName,
             get_permalink($post->ID),
-            ($terms && !is_wp_error($terms)) ? $terms : []
+            ($terms && !is_wp_error($terms)) ? $terms : [],
+            $customIconSvg
         );
     }
 

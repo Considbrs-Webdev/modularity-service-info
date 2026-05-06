@@ -1,7 +1,11 @@
 <div class="modularity-mod-service-info">
     <div class="mod-service-info mod-service-info__item">
         <div class="mod-service-info__wrapper">
-            @if (!empty($post->getCategoryIcons()))
+            @if ($post->getCustomIconSvg())
+                <div class="mod-service-info__icon">
+                    {!! $post->getCustomIconSvg() !!}
+                </div>
+            @elseif (!empty($post->getCategoryIcons()))
                 <div class="mod-service-info__icon">
                     @foreach ($post->getCategoryIcons() as $icon)
                         @icon(['icon' => $icon])

@@ -100,5 +100,11 @@ class ServiceMetaDecorator extends AbstractPostObjectDecorator implements PostOb
         return $icons;
     }
 
-    
+    /**
+     * @return string|null
+     */
+    public function getCustomIconSvg(): ?string
+    {
+        return apply_filters('ModularityServiceInfo/customIconSvg', null, $this->getId());
+    }
 }
