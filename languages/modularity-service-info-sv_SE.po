@@ -148,6 +148,14 @@ msgstr "Visa tomma kategorier"
 msgid "Shows category heading even if it doesn't contain any published information at the moment"
 msgstr "Visar kategorirubrik även om den för tillfället inte innehåller någon publicerad information"
 
+#: source/php/AcfFields/php/module-settings.php:170
+msgid "Upcoming and active first"
+msgstr "Kommande och aktiva först"
+
+#: source/php/AcfFields/php/module-settings.php:174
+msgid "When on: ongoing items first (newest start date first), then ended items (most recently ended first). When off: all items by start date, newest first. Items without a start date are listed last among ongoing items."
+msgstr "När den är aktiverad: pågående poster först (senaste startdatum överst), därefter avslutade (senast avslutade först). När den är avstängd: alla poster sorterade efter startdatum, senaste först. Poster utan startdatum visas sist bland pågående poster."
+
 #: source/php/AcfFields/php/post-data.php:8
 msgid "Service information"
 msgstr "Driftinformation"
@@ -238,7 +246,15 @@ msgstr "Ingen driftinformation tillgänglig för tillfället."
 msgid "View all service information"
 msgstr "Visa all driftinformation"
 
-#: source/php/Module/ServiceInfo.php:237
+#: source/php/Module/ServiceInfo.php:63
+msgid "Pågående"
+msgstr "Pågående"
+
+#: source/php/Module/ServiceInfo.php:64
+msgid "Avslutad"
+msgstr "Avslutad"
+
+#: source/php/Module/ServiceInfo.php:303
 msgid "Uncategorized"
 msgstr "Okategoriserad"
 

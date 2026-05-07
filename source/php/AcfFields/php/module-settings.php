@@ -171,7 +171,7 @@
             'name' => 'sort_upcoming_first',
             'aria-label' => '',
             'type' => 'true_false',
-            'instructions' => __('Lists current and upcoming entries first (by start date), then past entries (by end date). When off, order is by start date, newest first.', 'modularity-service-info'),
+            'instructions' => __('When on: ongoing items first (newest start date first), then ended items (most recently ended first). When off: all items by start date, newest first. Items without a start date are listed last among ongoing items.', 'modularity-service-info'),
             'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(

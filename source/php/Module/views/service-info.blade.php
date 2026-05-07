@@ -23,45 +23,70 @@
                 @endif
 
                 @if (empty($items))
-                    @typography([
-                        'element' => 'span'
-                    ])
+                    @typography(['element' => 'span'])
                         {{ $translations['noServiceInformationAvailable'] }}
                     @endtypography
                 @else
-                    <ul class="mod-service-info__list">
-                        @foreach ($items as $post)
-                            <li class="mod-service-info__item">
-                                <a href="{{ $post->link }}" class="mod-service-info__link">
-                                    @if ($showIcons && ($post->customIconSvg || $post->iconName))
-                                        <div class="mod-service-info__icon">
-                                            @if ($post->customIconSvg)
-                                                {!! $post->customIconSvg !!}
-                                            @else
-                                                @icon(['icon' => $post->iconName])
-                                                @endicon
-                                            @endif
-                                        </div>
+                    @php
+                        $statusGroups = $sortUpcomingFirst
+                            ? [
+                                ['label' => $translations['ongoing'], 'list' => array_values(array_filter($items, fn($p) => !$p->isEnded))],
+                                ['label' => $translations['ended'],   'list' => array_values(array_filter($items, fn($p) => $p->isEnded))],
+                              ]
+                            : [['label' => null, 'list' => $items]];
+                    @endphp
+
+                    <div class="mod-service-info__sections">
+                        @foreach ($statusGroups as $statusGroup)
+                            @if (!empty($statusGroup['list']))
+                                <div class="mod-service-info__status">
+                                    @if ($statusGroup['label'])
+                                        @typography([
+                                            'element' => 'h5',
+                                            'variant' => 'h4',
+                                            'classList' => ['mod-service-info__status-heading']
+                                        ])
+                                            {{ $statusGroup['label'] }}
+                                        @endtypography
                                     @endif
 
-                                    <div class="mod-service-info__content">
-                                        @if ($post->formattedDate)
-                                            <div class="mod-service-info__dates">
-                                                {!! $post->formattedDate !!}
-                                            </div>
-                                        @endif
+                                    <ul class="mod-service-info__list">
+                                        @foreach ($statusGroup['list'] as $post)
+                                            <li class="mod-service-info__item">
+                                                <a href="{{ $post->link }}" class="mod-service-info__link">
+                                                    @if ($showIcons && ($post->customIconSvg || $post->iconName))
+                                                        <div class="mod-service-info__icon">
+                                                            @if ($post->customIconSvg)
+                                                                {!! $post->customIconSvg !!}
+                                                            @else
+                                                                @icon(['icon' => $post->iconName])
+                                                                @endicon
+                                                            @endif
+                                                        </div>
+                                                    @endif
 
-                                        @typography([
-                                            'element' => 'span',
-                                            'classList' => ['mod-service-info__title']
-                                        ])
-                                            {{ $post->title }}
-                                        @endtypography
-                                    </div>
-                                </a>
-                            </li>
+                                                    <div class="mod-service-info__content">
+                                                        @if ($post->formattedDate)
+                                                            <div class="mod-service-info__dates">
+                                                                {!! $post->formattedDate !!}
+                                                            </div>
+                                                        @endif
+
+                                                        @typography([
+                                                            'element' => 'span',
+                                                            'classList' => ['mod-service-info__title']
+                                                        ])
+                                                            {{ $post->title }}
+                                                        @endtypography
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                         @endforeach
-                    </ul>
+                    </div>
                 @endif
             </div>
         @endforeach

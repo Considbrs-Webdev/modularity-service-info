@@ -54,7 +54,11 @@
 }
 
 .mod-service-info {
-  --archive-link-gap: calc(var(--base, 1em) * 2);
+  --between-category-groups: calc(var(--base, 1rem) * 1.5);
+  --archive-link-extra-gap: calc(var(--base, 1rem) * 0.5);
+  --group-category-to-content-gap: calc(var(--base, 1rem) * 0.75);
+  --between-status-sections: calc(var(--base, 1rem) * 1.25);
+  --status-heading-to-list: calc(var(--base, 1rem) * 0.75);
   --list-gap: var(--base, 1rem);
   --item-background-color: var(--color-background-card, #f5f5f5);
   --item-background-color-hover: color-mix(
@@ -73,16 +77,44 @@
   --date-font-size: 0.875rem;
   --date-color: #666;
   --title-font-size: 1.125rem;
-  --title-font-weight: var(
-    --h3-font-weight,
-    var(--font-weight-heading, 600)
-  );
+  --title-font-weight: var(--h3-font-weight, var(--font-weight-heading, 600));
   --transition-style: background-color 0.2s ease;
 
   display: flex;
   flex-direction: column;
-  gap: var(--archive-link-gap);
+  gap: var(--between-category-groups);
   max-width: var(--container-width-content, calc(var(--base, 8px) * 76));
+
+  &__archive-link {
+    margin-top: var(--archive-link-extra-gap);
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--group-category-to-content-gap);
+  }
+
+  &__group > .module-title.c-typography {
+    margin-block: 0;
+  }
+
+  &__sections {
+    display: flex;
+    flex-direction: column;
+    gap: var(--between-status-sections);
+  }
+
+  &__status {
+    display: flex;
+    flex-direction: column;
+    gap: var(--status-heading-to-list);
+    min-width: 0;
+  }
+
+  &__status-heading.c-typography {
+    margin-block: 0;
+  }
 
   &__list {
     list-style: none;

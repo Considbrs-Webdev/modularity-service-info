@@ -19,6 +19,7 @@ class ServiceInfoPost
     public ?string $customIconSvg;
     public string $link;
     public array $terms;
+    public bool $isEnded;
 
     /**
      * @param string $title
@@ -27,6 +28,7 @@ class ServiceInfoPost
      * @param string $link
      * @param array $terms
      * @param string|null $customIconSvg
+     * @param bool $isEnded
      */
     public function __construct(
         string $title,
@@ -34,7 +36,8 @@ class ServiceInfoPost
         ?string $iconName,
         string $link,
         array $terms = [],
-        ?string $customIconSvg = null
+        ?string $customIconSvg = null,
+        bool $isEnded = false
     ) {
         $this->title = $title;
         $this->formattedDate = $formattedDate;
@@ -42,5 +45,6 @@ class ServiceInfoPost
         $this->customIconSvg = $customIconSvg;
         $this->link = $link;
         $this->terms = $terms;
+        $this->isEnded = $isEnded;
     }
 }

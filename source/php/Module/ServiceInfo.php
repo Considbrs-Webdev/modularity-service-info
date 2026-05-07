@@ -60,6 +60,8 @@ class ServiceInfo extends \Modularity\Module
         $data['translations'] = [
             'noServiceInformationAvailable' => __('No service information available at the moment.', 'modularity-service-info'),
             'archiveLinkText' => __('View all service information', 'modularity-service-info'),
+            'ongoing' => __('Pågående', 'modularity-service-info'),
+            'ended' => __('Avslutad', 'modularity-service-info'),
         ];
 
         return $data;
@@ -153,6 +155,9 @@ class ServiceInfo extends \Modularity\Module
     }
 
     /**
+     * Split ended vs ongoing, sort ended by most recently ended first, ongoing by newest start first.
+     * Ongoing ascending start order existed earlier as chronological timeline sorting; descending prioritizes latest entries at the top.
+     *
      * @param \WP_Post[] $posts
      * @return \WP_Post[]
      */
@@ -182,10 +187,10 @@ class ServiceInfo extends \Modularity\Module
                     return $bKey <=> $aKey;
                 }
 
-                $aKey = $aStart ?? PHP_INT_MAX;
-                $bKey = $bStart ?? PHP_INT_MAX;
+                $aKey = $aStart ?? PHP_INT_MIN;
+                $bKey = $bStart ?? PHP_INT_MIN;
 
-                return $aKey <=> $bKey;
+                return $bKey <=> $aKey;
             }
         );
 
@@ -240,12 +245,13 @@ class ServiceInfo extends \Modularity\Module
             $iconName = get_field('icon', 'service_category_' . $firstTerm->term_id);
         }
 
-        // Get start and end raw values
         $startDateRaw = get_field('start_date', $post->ID);
         $endDateRaw = get_field('end_date', $post->ID);
 
-        // Formatted HTML span for date(s)
         $formattedDate = DateFormatter::formatDateRange((string) $startDateRaw, (string) $endDateRaw);
+
+        $endTimestamp = ($endDateRaw !== null && $endDateRaw !== '') ? strtotime((string) $endDateRaw) : null;
+        $isEnded = $endTimestamp !== null && $endTimestamp < current_time('timestamp');
 
         $customIconSvg = apply_filters('ModularityServiceInfo/customIconSvg', null, $post->ID);
 
@@ -255,7 +261,8 @@ class ServiceInfo extends \Modularity\Module
             $iconName,
             get_permalink($post->ID),
             ($terms && !is_wp_error($terms)) ? $terms : [],
-            $customIconSvg
+            $customIconSvg,
+            $isEnded
         );
     }
 
