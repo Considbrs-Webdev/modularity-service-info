@@ -186,6 +186,40 @@
             'ui_off_text' => '',
             'ui' => 1,
         ),
+        7 => array(
+            'key' => 'field_6952569189e34',
+            'label' => __('Show ended posts', 'modularity-service-info'),
+            'name' => 'show_ended_posts',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => __('When archive mode is on and "Upcoming and active first" is off, ended posts are hidden by default. Turn this on to include them.', 'modularity-service-info'),
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_6952560889e30',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                    1 => array(
+                        'field' => 'field_6952569189e33',
+                        'operator' => '!=',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'allow_in_bindings' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'ui' => 1,
+        ),
     ),
     'location' => array(
         0 => array(

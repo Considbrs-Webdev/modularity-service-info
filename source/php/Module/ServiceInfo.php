@@ -47,9 +47,21 @@ class ServiceInfo extends \Modularity\Module
         $data['groupByCategories'] = is_null($data['groupByCategories']) ? false : $data['groupByCategories'];
         $data['showEmptyCategories'] = is_null($data['showEmptyCategories']) ? false : $data['showEmptyCategories'];
         $data['sortUpcomingFirst'] = is_null($data['sortUpcomingFirst']) ? false : $data['sortUpcomingFirst'];
+        $data['showEndedPosts'] = is_null($data['showEndedPosts'] ?? null)
+            ? false
+            : (bool) $data['showEndedPosts'];
+
+        $hideEnded = $data['archiveMode']
+            && ! $data['sortUpcomingFirst']
+            && ! $data['showEndedPosts'];
+        $hideEnded = (bool) apply_filters(
+            'ModularityServiceInfo/hideEndedPosts',
+            $hideEnded,
+            $data,
+        );
 
         $postsToShow = $data['archiveMode'] ? -1 : $data['postsToShow'];
-        $posts = $this->getPosts($postsToShow, true, $data['sortUpcomingFirst']);
+        $posts = $this->getPosts($postsToShow, true, $data['sortUpcomingFirst'], $hideEnded);
 
         if ($data['groupByCategories']) {
             $data['posts'] = $this->groupPosts($posts, $data['showEmptyCategories']);
@@ -118,10 +130,17 @@ class ServiceInfo extends \Modularity\Module
      * Get service information posts
      * 
      * @param int $postsToShow Number of posts to retrieve
-     * @return array
+     * @param bool $excludeSelf Exclude current post when singular service_information
+     * @param bool $sortUpcomingFirst Sort ongoing first, then ended
+     * @param bool $hideEnded Remove ended posts from result
+     * @return array<int, ServiceInfoPost>
      */
-    private function getPosts(int $postsToShow, bool $excludeSelf = true, bool $sortUpcomingFirst = false): array
-    {
+    private function getPosts(
+        int $postsToShow,
+        bool $excludeSelf = true,
+        bool $sortUpcomingFirst = false,
+        bool $hideEnded = false,
+    ): array {
         $args = [
             'post_type'      => 'service_information',
             'posts_per_page' => $postsToShow,
@@ -149,6 +168,13 @@ class ServiceInfo extends \Modularity\Module
         $posts = [];
         foreach ($wpPosts as $post) {
             $posts[] = $this->formatPost($post);
+        }
+
+        if ($hideEnded) {
+            $posts = array_values(array_filter(
+                $posts,
+                static fn (ServiceInfoPost $p): bool => ! $p->isEnded,
+            ));
         }
 
         return $posts;
