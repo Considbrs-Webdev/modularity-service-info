@@ -25,8 +25,32 @@
   vertical-align: middle;
 }
 
-.s-post-type-service-info-archive .c-link:has(.c-icon) {
+.service-info-nav-icon {
   position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  .service-info-badge {
+    --badge-font-size: 0.65em;
+    --badge-padding: 0.15em;
+    --badge-min-size: 1.35em;
+
+    position: absolute;
+    top: 40%;
+    left: 42%;
+    z-index: 10;
+    margin-left: 0;
+  }
+}
+
+.s-post-type-service-info-archive .c-link:has(.c-icon):not(:has(.service-info-nav-icon)) {
+  position: relative;
+
+  .c-nav__text {
+    overflow: visible;
+  }
 
   .service-info-badge {
     position: absolute;
@@ -36,13 +60,18 @@
   }
 }
 
-/* Nav button (tabs menu): ensure proper layout for icon + text + badge */
+/* Nav button (tabs menu): overlay badge on the icon */
 .c-nav__button:has(.service-info-badge),
 .c-button.c-nav__button:has(.service-info-badge) {
   .c-button__label {
     display: inline-flex;
     align-items: center;
     gap: 0.5em;
+    position: relative;
+  }
+
+  .c-button__label-text {
+    overflow: visible;
   }
 
   .service-info-badge {
@@ -50,6 +79,7 @@
     top: 45%;
     left: 3px;
     z-index: 2001;
+    margin-left: 0;
   }
 }
 
