@@ -166,6 +166,11 @@ class ImportCron
             if ($dryRun) {
                 $existingId = $this->findExistingPost($sourceIdentifier);
                 $action = $existingId ? 'update' : 'create';
+
+                if ($existingId && get_post_status($existingId) === 'trash') {
+                    $action = $this->shouldRestoreTrashedPost($existingId, $item) ? 'restore' : 'skip (trashed, end date unchanged)';
+                }
+
                 $this->log(sprintf(
                     '[DRY-RUN] Would %s: "%s" (source: %s)',
                     $action,
@@ -207,6 +212,14 @@ class ImportCron
     private function upsertServiceInfo(ServiceInfoItem $item, string $sourceIdentifier): string
     {
         $existingPostId = $this->findExistingPost($sourceIdentifier);
+
+        if ($existingPostId && get_post_status($existingPostId) === 'trash') {
+            if (!$this->shouldRestoreTrashedPost($existingPostId, $item)) {
+                return 'skipped';
+            }
+
+            wp_untrash_post($existingPostId);
+        }
 
         $postData = [
             'post_type'    => ServiceInformation::POST_TYPE_NAME,
@@ -344,9 +357,23 @@ class ImportCron
      */
     private function findExistingPost(string $sourceIdentifier): ?int
     {
+        // Prefer a live post. A trashed post is only used when nothing else matches,
+        // so an item that is still in the source is not created again after the
+        // unpublish cron has trashed it.
+        return $this->findPostByStatus($sourceIdentifier, ['publish', 'future', 'draft', 'pending', 'private'])
+            ?? $this->findPostByStatus($sourceIdentifier, ['trash']);
+    }
+
+    /**
+     * @param string   $sourceIdentifier
+     * @param string[] $postStatuses
+     * @return int|null Post ID or null if not found
+     */
+    private function findPostByStatus(string $sourceIdentifier, array $postStatuses): ?int
+    {
         $query = new \WP_Query([
             'post_type'      => ServiceInformation::POST_TYPE_NAME,
-            'post_status'    => ['publish', 'draft', 'pending', 'private'],
+            'post_status'    => $postStatuses,
             'posts_per_page' => 1,
             'meta_query'     => [
                 [
@@ -362,6 +389,41 @@ class ImportCron
         $posts = $query->get_posts();
 
         return !empty($posts) ? (int) $posts[0] : null;
+    }
+
+    /**
+     * Decide if a trashed post should be restored by an item that is still in the source.
+     *
+     * The post is left alone unless the end date has changed, and then only if the new
+     * end date is empty or in the future, since the unpublish cron would otherwise trash
+     * it again straight away.
+     *
+     * @param int             $postId
+     * @param ServiceInfoItem $item
+     * @return bool
+     */
+    private function shouldRestoreTrashedPost(int $postId, ServiceInfoItem $item): bool
+    {
+        $storedEndDate = (string) get_post_meta($postId, 'end_date', true);
+        $newEndDate    = $item->getEndDate() ? $item->getEndDate()->format('Y-m-d H:i:s') : '';
+
+        if ($this->isSameDateTime($storedEndDate, $newEndDate)) {
+            return false;
+        }
+
+        return $newEndDate === '' || $newEndDate > current_time('Y-m-d H:i:s');
+    }
+
+    /**
+     * Compare two date strings, treating two empty values as equal.
+     */
+    private function isSameDateTime(string $a, string $b): bool
+    {
+        if ($a === '' || $b === '') {
+            return $a === $b;
+        }
+
+        return strtotime($a) === strtotime($b);
     }
 
     /**
