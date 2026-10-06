@@ -61,6 +61,9 @@ class App {
         // Enqueue frontend styles
         add_action('wp_enqueue_scripts', [$this, 'enqueueFrontendStyles']);
 
+        // Same list stylesheet inside the editor canvas iframe.
+        add_action('enqueue_block_assets', [$this, 'enqueueEditorStyles']);
+
         // Fix breadcrumbs if service archive is custom page
         add_filter('Municipio/Breadcrumbs/Items', [$this, 'maybeInsertArchiveIntoBreadcrumbs'], 20);
     }
@@ -90,16 +93,50 @@ class App {
     }
 
     public function enqueueFrontendStyles(): void {
+        $this->enqueueGeneralStyles();
+    }
+
+    /**
+     * Enqueue the list stylesheet inside the editor iframe.
+     *
+     * WordPress collects this hook into the canvas only while
+     * should_load_block_editor_scripts_and_styles is false. The parent editor
+     * keeps that filter true, so the admin menu badge is left alone.
+     *
+     * @return void
+     */
+    public function enqueueEditorStyles(): void
+    {
+        if (!is_admin()) {
+            return;
+        }
+
+        if (apply_filters('should_load_block_editor_scripts_and_styles', true)) {
+            return;
+        }
+
+        $this->enqueueGeneralStyles();
+    }
+
+    /**
+     * Enqueue the built general stylesheet.
+     *
+     * @return void
+     */
+    private function enqueueGeneralStyles(): void
+    {
         $styleFile = CacheBust::name('css/modularity-service-info-general.css');
 
-        if ($styleFile) {
-            wp_enqueue_style(
-                'modularity-service-info-general',
-                MODULARITYSERVICEINFO_URL . '/assets/dist/' . $styleFile,
-                [],
-                null
-            );
+        if (!$styleFile || wp_style_is('modularity-service-info-general', 'enqueued')) {
+            return;
         }
+
+        wp_enqueue_style(
+            'modularity-service-info-general',
+            MODULARITYSERVICEINFO_URL . '/assets/dist/' . $styleFile,
+            [],
+            null
+        );
     }
 
     /**
